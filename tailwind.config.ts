@@ -1,12 +1,12 @@
-import { nextui } from "@nextui-org/react";
-import type { Config } from "tailwindcss";
+import {nextui} from '@nextui-org/theme'
 
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
     extend: {
@@ -16,7 +16,7 @@ const config: Config = {
         lg: "1024px",
         xl: "1280px",
         '2xl': "1536px",
-      },
+      },     
     },
   },
   darkMode: "class",
@@ -48,4 +48,3 @@ const config: Config = {
     }
   })],
 };
-export default config;
