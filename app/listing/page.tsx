@@ -2,7 +2,7 @@ import React from 'react'
 
 const Listings = () => {
   return (
-    <div className='w-full min-h-screen lg:max-w-[90rem] lg:mx-auto lg:px-9 px-4'>
+    <div className='w-full  lg:max-w-[90rem] lg:mx-auto lg:px-9 px-4'>
         Listings will be here
     </div>
   )
