@@ -3,11 +3,12 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import NavBar from "@/components/NavBar/app";
+import Footer from "@/components/Footer/app"
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "3n1t Properties",
+  title: "3n1t | Properties",
   description: "Your dream properties at your finger tips",
   keywords: "properties, real estate, houses, apartments, land, commercial",
 };
@@ -23,6 +24,9 @@ export default function RootLayout({
         <Providers themeProps={{attribute: 'class', defaultTheme: "light"}}>
           <NavBar />
         {children}
+        <Footer />
+
+        
 
         </Providers>
         </body>
