@@ -22,25 +22,26 @@ import {
   Badge,
 } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
-
+import { usePathname } from "next/navigation";
 import { AcmeIcon } from "./social";
+import { GoogleIcon, GithubIcon } from "./social";
 
 import NotificationsCard from "./notifications-card";
 import { ThemeSwitcher } from "../DarkMode/switch_theme";
 import Image from "next/image";
 
 export default function Component() {
-
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const handleLinkClick = () => {
-      setIsMenuOpen(false);
-    };
+    const path = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const handleLinkClick = () => {
+    setIsMenuOpen(false);
+  };
   return (
     <Navbar
       classNames={{
         base: "lg:bg-transparent lg:backdrop-filter-none",
         item: "data-[active=true]:text-primary",
-        wrapper: "px-4 sm:px-6 max-w-[110rem] py-9",
+        wrapper: "px-4 sm:px-6 lg:max-w-[90rem]  py-[3rem]",
       }}
       height="60px"
       isMenuOpen={isMenuOpen}
@@ -56,25 +57,24 @@ export default function Component() {
         </div>
       </NavbarBrand>
       <NavbarContent
-        className="ml-[20rem] hidden h-12 w-full max-w-fit gap-9 rounded-full bg-content2 px-4 dark:bg-content1 lg:flex"
+        className="xl:ml-[14rem] ml-[2rem] hidden h-12 w-full max-w-fit gap-9 rounded-full bg-content2 px-4 dark:bg-content1 lg:flex"
         justify="start"
       >
         <NavbarItem>
-          <Link className="flex gap-2 text-inherit" href="/">
+          <Link className={`${'/' === path ? "flex gap-2 text-inherit text-[#0000FF] dark:text-[#FFFF00]" : "flex gap-2 text-inherit"}`} href="/">
             Home
           </Link>
         </NavbarItem>
-        <NavbarItem isActive>
+        <NavbarItem>
           <Link
-            aria-current="page"
-            className="flex gap-2 text-inherit"
+            className={`${'/listing' === path ? "flex gap-2 text-inherit text-[#0000FF] dark:text-[#FFFF00]" : "flex gap-2 text-inherit"}`}
             href="/listing"
           >
             Listing
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link className="flex gap-2 text-inherit" href="/listing/create">
+          <Link className={`${'/listing/create' === path ? "flex gap-2 text-inherit text-[#0000FF] dark:text-[#FFFF00]" : "flex gap-2 text-inherit"}`}  href="/listing/create">
             Add Listing
           </Link>
         </NavbarItem>
@@ -85,7 +85,9 @@ export default function Component() {
       >
         <NavbarItem>
           <Link className="flex gap-2 text-inherit" href="#">
-            Login or Register
+            <GoogleIcon />
+            <GithubIcon />
+            Login
           </Link>
         </NavbarItem>
       </NavbarContent>
@@ -123,7 +125,7 @@ export default function Component() {
                 radius="full"
                 variant="light"
               >
-                <Badge color="danger" content="5" showOutline={false} size="md">
+                <Badge color="danger" content="9" showOutline={false} size="md">
                   <Icon
                     className="text-default-500"
                     icon="solar:bell-linear"
@@ -164,14 +166,9 @@ export default function Component() {
                 <p className="font-semibold">Signed in as</p>
                 <p className="font-semibold">johndoe@example.com</p>
               </DropdownItem>
-              <DropdownItem key="settings">My Settings</DropdownItem>
-              <DropdownItem key="team_settings">Team Settings</DropdownItem>
-              <DropdownItem key="analytics">Analytics</DropdownItem>
-              <DropdownItem key="system">System</DropdownItem>
-              <DropdownItem key="configurations">Configurations</DropdownItem>
-              <DropdownItem key="help_and_feedback">
-                Help & Feedback
-              </DropdownItem>
+              <DropdownItem key="settings">Your Profile</DropdownItem>
+              <DropdownItem key="team_settings">Saved Listing</DropdownItem>
+
               <DropdownItem key="logout" color="danger">
                 Log Out
               </DropdownItem>
@@ -183,23 +180,44 @@ export default function Component() {
       {/* Mobile Menu */}
       <NavbarMenu className="flex items-center gap-[3rem] pt-[3rem]">
         <NavbarMenuItem>
-          <Link className="w-full" color="foreground" href="/" onClick={handleLinkClick}>
+          <Link
+            className={`${'/' === path ? "w-full flex gap-2 text-inherit text-yellow-500" : "flex gap-2 text-inherit w-full"}`}
+            color="foreground"
+            href="/"
+            onClick={handleLinkClick}
+          >
             Home
           </Link>
         </NavbarMenuItem>
         <NavbarMenuItem>
-          <Link className="w-full" color="foreground" href="/listing" onClick={handleLinkClick}>
+          <Link
+            className={`${'/listing' === path ? "w-full flex gap-2 text-inherit text-yellow-500" : "flex gap-2 text-inherit w-full"}`}
+            color="foreground"
+            href="/listing"
+            onClick={handleLinkClick}
+          >
             Listing
           </Link>
         </NavbarMenuItem>
         <NavbarMenuItem>
-          <Link className="w-full" color="foreground" href="/listing/create" onClick={handleLinkClick}>
+          <Link
+            className={`${'/listing/create' === path ? "w-full flex gap-2 text-inherit text-yellow-500" : "flex gap-2 text-inherit w-full"}`}
+            color="foreground"
+            href="/listing/create"
+            onClick={handleLinkClick}
+          >
             Add Listing
           </Link>
         </NavbarMenuItem>
         <NavbarMenuItem>
-          <Link className="flex gap-2 text-inherit" href="#" onClick={handleLinkClick}>
-            Login or Register
+          <Link
+            className="flex gap-2 text-inherit"
+            href="#"
+            onClick={handleLinkClick}
+          >
+            <GoogleIcon />
+            <GithubIcon />
+            Login
           </Link>
         </NavbarMenuItem>
         <NavbarMenuItem>
