@@ -1,5 +1,5 @@
 import React from "react";
-export const animals = [
+export const apartments = [
   {label: "Cat", value: "cat", description: "The second most popular pet in the world"},
   {label: "Dog", value: "dog", description: "The most popular pet in the world"},
   {label: "Elephant", value: "elephant", description: "The largest land animal"},

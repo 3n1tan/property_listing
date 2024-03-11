@@ -42,7 +42,7 @@ export default function Component() {
       classNames={{
         base: "lg:bg-transparent lg:backdrop-filter-none",
         item: "data-[active=true]:text-primary",
-        wrapper: "px-4 sm:px-6 lg:max-w-[90rem]  py-[3rem]",
+        wrapper: "px-4 sm:px-6 lg:max-w-[90rem]  py-[3rem] ",
       }}
       height="60px"
       isMenuOpen={isMenuOpen}
