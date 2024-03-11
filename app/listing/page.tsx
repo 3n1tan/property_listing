@@ -41,17 +41,9 @@ const ListingsPage = () => {
     <div className='w-full min-h-[100lvh] lg:max-w-[90rem] lg:mx-auto lg:px-9 px-4'>
       <div
         className={cn(
-          "my-auto grid max-w-7xl grid-cols-1 lg:gap-5 gap-9 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5",
+          "my-auto grid max-w-7xl grid-cols-1 gap-9  p-4 lg:grid-cols-2 xl:grid-cols-3",
         )}
       >
-      {/* <PlaceListItem
-          name='Lagos'
-          price={3000}
-          href='/'
-          id='1'
-          imageSrc='https://nextuipro.nyc3.cdn.digitaloceanspaces.com/components-images/places/1.jpeg' 
-          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-      /> */}
       <ListCard />
       <ListCard />
       <ListCard />

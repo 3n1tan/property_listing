@@ -17,7 +17,7 @@ import Link from "next/link";
 
 const ListCard = () => {
   return (
-    <Card className="rounded-xl shadow-md relative w-[22rem]">
+    <Card className="rounded-xl shadow-md relative w-[24rem]">
       <div className="relative w-[25rem] h-[12rem] overflow-hidden rounded-t-xl">
         <Image
           src="https://nextuipro.nyc3.cdn.digitaloceanspaces.com/components-images/places/1.jpeg"

@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} >
         <Providers themeProps={{attribute: 'class', defaultTheme: "light"}}>
           <NavBar />
         {children}
