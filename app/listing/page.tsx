@@ -44,6 +44,14 @@ const ListingsPage = () => {
           "my-auto grid max-w-7xl grid-cols-1 gap-9  p-4 lg:grid-cols-2 xl:grid-cols-3",
         )}
       >
+      {/* <PlaceListItem
+          name='Lagos'
+          price={3000}
+          href='/'
+          id='1'
+          imageSrc='https://nextuipro.nyc3.cdn.digitaloceanspaces.com/components-images/places/1.jpeg' 
+          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      /> */}
       <ListCard />
       <ListCard />
       <ListCard />
