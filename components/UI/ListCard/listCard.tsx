@@ -29,7 +29,7 @@ const ListCard = () => {
       </div>
 
       <h3 className="absolute top-[10px] right-[10px] bg-white px-4 py-2 rounded-lg text-red-500 font-bold text-right md:text-center lg:text-right">
-        2.500€/mo
+        1.200€/mo
       </h3>
 
       <CardBody>
@@ -54,7 +54,7 @@ const ListCard = () => {
           </p>
         </div>
 
-        <div className="flex justify-center gap-4 text-green-800 mt-4 pb-5">
+        <div className="flex justify-center gap-4 text-green-800 mt-4 pb-5 dark:text-yellow-300">
           <p>
             <AccessTimeOutlinedIcon /> Nightly
           </p>
@@ -68,7 +68,7 @@ const ListCard = () => {
       </CardBody>
       <Divider />
       <CardFooter className="my-4">
-        <div className="flex justify-between w-full">
+        <div className="flex justify-between w-full items-center">
           <p>
             <LocationOnOutlinedIcon /> <span>Helsinki</span>
           </p>
