@@ -63,6 +63,7 @@ const footerNavigation = {
 };
 
 export default function Component() {
+  const currentYear = new Date().getFullYear()
   const renderList = React.useCallback(
     ({title, items}: {title: string; items: {name: string; href: string}[]}) => (
       <div>
@@ -119,7 +120,7 @@ export default function Component() {
         </div>
         <Divider className="mt-16 sm:mt-20 lg:mt-24" />
         <div className="flex flex-wrap justify-between gap-2 pt-8">
-          <p className="text-small text-default-400">&copy; 2024 3N1T | PROPERTIES. All rights reserved.</p>
+          <p className="text-small text-default-400">&copy; {currentYear} 3N1T | PROPERTIES. All rights reserved.</p>
           <ThemeSwitcher />
         </div>
       </div>

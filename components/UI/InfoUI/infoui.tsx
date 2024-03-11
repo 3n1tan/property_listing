@@ -6,7 +6,7 @@ const InfoUI = () => {
     <div>
       <div className="xl:mt-9 mt-5 lg:flex gap-6 lg:max-w-[85rem] xl:mx-auto grid mx-5">
         <InfoBox
-            title="For Rentals" 
+            title="For Rents" 
             description="Discover your ideal rental properties. Save listings and get in touch with property owners."
             button_title="Browse Properties"
             link="/listing"

@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['i.pravatar.cc'],
+        domains: ["nextuipro.nyc3.cdn.digitaloceanspaces.com", 'i.pravatar.cc'],
       },
 };
 
