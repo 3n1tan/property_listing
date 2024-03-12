@@ -126,7 +126,7 @@ const ListCard: React.FC<ListCardProps> = ({listing}) => {
             <LocationOnOutlinedIcon /> <span>{listing.location.city} {listing.location.state}</span>
           </p>
           <Button className="bg-blue-400 text-white">
-            <Link href={`/listing/`}>Details</Link>
+            <Link href={`/listing/${listing._id}`}>Details</Link>
           </Button>
         </div>
       </CardFooter>

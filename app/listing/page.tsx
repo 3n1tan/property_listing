@@ -1,5 +1,4 @@
 import React from 'react'
-import PlaceListItem from '@/components/UI/ListCard/card';
 import { cn } from './cn';
 import ListCard from '@/components/UI/ListCard/listCard';
 
