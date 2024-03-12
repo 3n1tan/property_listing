@@ -73,7 +73,7 @@ const ListCard: React.FC<ListCardProps> = ({listing}) => {
         />
       </div>
 
-      <h3 className="absolute top-[10px] right-[10px] bg-white px-4 py-2 rounded-lg text-red-500 font-bold text-right md:text-center lg:text-right">
+      <h3 className="absolute top-[10px] right-[10px] bg-white px-4 py-2 rounded-lg text-green-700 font-bold text-right md:text-center lg:text-right">
         {getRate(listing)}
       </h3>
 

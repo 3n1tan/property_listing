@@ -1,6 +1,7 @@
 import Hero from "@/components/UI/HeroBanner/hero";
 import InfoBox from "@/components/UI/InfoBox/infobox";
 import InfoUI from "@/components/UI/InfoUI/infoui";
+import RecentListing from "@/components/UI/RecentListing/recentListing";
 import Image from "next/image";
 
 
@@ -12,6 +13,7 @@ export default function Home() {
         <Hero />
       </div>
       <InfoUI />
+      <RecentListing />
 
     </main>
   );

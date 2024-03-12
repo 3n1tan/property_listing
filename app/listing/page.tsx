@@ -40,7 +40,7 @@ interface ListCardProps {
 }
 
 async function fetchListings() {
-  const res= await fetch ("http://localhost:3000/api/listing", {cache: "no-store"});
+  const res= await fetch (`${process.env.NEXT_PUBLIC_API_DOMAIN}/listing`, {cache: "no-store"});
   if(!res.ok) {
     throw new Error ("Fetching Listings failed")
   }
@@ -49,11 +49,14 @@ async function fetchListings() {
 const ListingsPage = async () => {
   const listings = await fetchListings();
   
+
+  listings.sort((a: Listing, b: Listing) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
   return (
-    <div className='w-full min-h-[100lvh] lg:max-w-[90rem] lg:mx-auto lg:px-9 px-4'>
+    <div className='w-full min-h-[100lvh] lg:max-w-[90rem] lg:mx-auto lg:px-9 px-4 ml-[-10px] lg:ml-0'>
       <div
         className={cn(
-          "mx-auto grid max-w-7xl grid-cols-1 gap-9  p-4 lg:grid-cols-2 xl:grid-cols-3",
+          "mx-auto grid max-w-7xl grid-cols-1 gap-9  p-4 lg:grid-cols-2 xl:grid-cols-3 lg:mt-9",
         )}
       >
 
