@@ -22,7 +22,7 @@ const Hero = () => {
             size="lg"
             radius="sm"
           />
-          <Select label="All" className="" size="sm">
+          <Select label="Property-Type" className="" size="sm">
             {apartments.map((apartment) => (
               <SelectItem key={apartment.value} value={apartment.value}>
                 {apartment.label}

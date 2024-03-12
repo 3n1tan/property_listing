@@ -9,6 +9,6 @@ export const GET = async (request: NextRequest) => {
         const listings = await Listing.find();
         return  NextResponse.json(listings, {status: 200});
     } catch (error) {
-        return new NextResponse("Error in fetching blogposts " + error, {status: 500})
+        return new NextResponse("Error in fetching listings " + error, {status: 500})
     }
 }
