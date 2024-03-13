@@ -26,7 +26,7 @@ const SingleListPage: FC<SingleListProps> = async ({params}) => {
     
   return (
     <div className='w-full min-h-[100lvh] lg:max-w-[90rem] lg:mx-auto lg:px-9 px-4 ml-[-10px]'>
-      <p>SingleProperty</p>
+      <SingleListCard image={singleList.images[0]}/>
 
        
     </div>
