@@ -1,34 +1,34 @@
-'use client'
 import React, { FC, useState, useEffect } from 'react'
-
+import SingleListCard from '@/components/UI/ListCard/singleListCard'
+import ListCard from '@/components/UI/ListCard/listCard';
 interface SingleListProps {
     params: {
         id: string
     }
+
 }
 
-const SingleListPage: FC<SingleListProps> = ({params}) => {
-  const [listing, setListing] = useState(null)
+async function fetchListing(params: {id: string}) {
+  const res= await fetch (`http://localhost:3000/api/listing/${params.id}`, {cache: "no-store"});
 
-  useEffect(() => {
-    const fetchListing = async (params: {id: string}) => {
-      const res = await fetch (`${process.env.NEXT_PUBLIC_API_DOMAIN}/listing/${params.id}`);
-      if(!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`)
-      }
-      const result = await res.json();
-      setListing(result)
-    }
+  if(!res.ok) {
+    console.error("failed, error ", res.status)
+    throw new Error ("Fetching Listings failed")
+  }
 
-    fetchListing(params).catch((e) => {
-      console.error("An error occurred while fetching the data: ", e)
-    })
+  return res.json();
+}
 
-  }, [params])
+const SingleListPage: FC<SingleListProps> = async ({params}) => {
+  let singleList = await fetchListing(params);
+  console.log(singleList)
+  
     
   return (
-    <div>
-        {params.id}
+    <div className='w-full min-h-[100lvh] lg:max-w-[90rem] lg:mx-auto lg:px-9 px-4 ml-[-10px]'>
+      <p>SingleProperty</p>
+
+       
     </div>
   )
 }

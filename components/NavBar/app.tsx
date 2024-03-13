@@ -33,7 +33,7 @@ import Image from "next/image";
 export default function Component() {
   const path = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const handleLinkClick = () => {
     setIsMenuOpen(false);
   };
