@@ -1,6 +1,5 @@
 import React from "react";
 import ListCard from "../ListCard/listCard";
-import SwiperEffect from "../SwiperEffect/app";
 
 async function fetchListings() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}/listing`, {
