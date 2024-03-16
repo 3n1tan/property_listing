@@ -1,7 +1,9 @@
 import GoogleProvider from "next-auth/providers/google";
 import connect from "./dbConnect";
 import User from "@/models/User";
-import { Profile } from "next-auth";
+import {  Profile } from "next-auth";
+
+
 
 interface UserProfile extends Profile {
     name: string;
@@ -10,7 +12,7 @@ interface UserProfile extends Profile {
   }
 
 
-export const authOptions = {
+export const authOptions: any = {
     providers: [
       GoogleProvider({
         clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -25,7 +27,7 @@ export const authOptions = {
       })
     ],
     callbacks: {
-        async signIn({ profile }: { profile: UserProfile }) {
+        async signIn({ profile }: {profile: UserProfile}) {
             await connect()
             const userExists = await User.findOne({ email: profile.email});
             if (!userExists) {

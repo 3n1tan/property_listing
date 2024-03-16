@@ -24,7 +24,7 @@ import {
 import { Icon } from "@iconify/react";
 import { usePathname } from "next/navigation";
 import { AcmeIcon } from "./social";
-import { GoogleIcon} from "./social";
+import { GoogleIcon } from "./social";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 import NotificationsCard from "./notifications-card";
@@ -36,7 +36,7 @@ export default function Component() {
   const profileImage = session?.user?.image;
   const path = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [providers, setProviders] = useState<Record<string, any> | null>(null); 
+  const [providers, setProviders] = useState<Record<string, any> | null>(null);
   const handleLinkClick = () => {
     setIsMenuOpen(false);
   };
@@ -50,7 +50,7 @@ export default function Component() {
     setAuthProviders();
   }, []);
 
-  console.log(profileImage)
+  console.log(profileImage);
 
   return (
     <Navbar
@@ -185,7 +185,10 @@ export default function Component() {
                     size="sm"
                   >
                     <Image
-                      src={profileImage || "https://i.pravatar.cc/150?u=a04258114e29526708c"}
+                      src={
+                        profileImage ||
+                        "https://i.pravatar.cc/150?u=a04258114e29526708c"
+                      }
                       width={30}
                       height={30}
                       alt=""
@@ -197,12 +200,16 @@ export default function Component() {
               <DropdownMenu aria-label="Profile Actions" variant="flat">
                 <DropdownItem key="profile" className="h-14 gap-2">
                   <p className="font-semibold">Signed in as</p>
-                  <p className="font-semibold">johndoe@example.com</p>
+                  <p className="font-semibold">{session?.user?.email}</p>
                 </DropdownItem>
                 <DropdownItem key="settings">Your Profile</DropdownItem>
                 <DropdownItem key="team_settings">Saved Listing</DropdownItem>
 
-                <DropdownItem key="logout" color="danger">
+                <DropdownItem
+                  key="logout"
+                  color="danger"
+                  href="/api/auth/signout"
+                >
                   Log Out
                 </DropdownItem>
               </DropdownMenu>
