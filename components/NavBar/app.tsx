@@ -24,7 +24,7 @@ import {
 import { Icon } from "@iconify/react";
 import { usePathname } from "next/navigation";
 import { AcmeIcon } from "./social";
-import { GoogleIcon, GithubIcon } from "./social";
+import { GoogleIcon} from "./social";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 import NotificationsCard from "./notifications-card";
@@ -33,6 +33,7 @@ import Image from "next/image";
 
 export default function Component() {
   const { status, data: session } = useSession();
+  const profileImage = session?.user?.image;
   const path = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [providers, setProviders] = useState<Record<string, any> | null>(null); 
@@ -48,6 +49,8 @@ export default function Component() {
 
     setAuthProviders();
   }, []);
+
+  console.log(profileImage)
 
   return (
     <Navbar
@@ -182,7 +185,7 @@ export default function Component() {
                     size="sm"
                   >
                     <Image
-                      src="https://i.pravatar.cc/150?u=a04258114e29526708c"
+                      src={profileImage || "https://i.pravatar.cc/150?u=a04258114e29526708c"}
                       width={30}
                       height={30}
                       alt=""
