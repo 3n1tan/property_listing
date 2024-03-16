@@ -39,7 +39,7 @@ interface ListCardProps {
 }
 
 async function fetchListings() {
-  const res= await fetch (`http://localhost:3000/api/listing`, {cache: "no-store"});
+  const res= await fetch (`${process.env.NEXT_PUBLIC_API_DOMAIN}/listing`, {cache: "no-store"});
   if(!res.ok) {
     throw new Error ("Fetching Listings failed")
   }

@@ -3,7 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import NavBar from "@/components/NavBar/app";
-import Footer from "@/components/Footer/app"
+import Footer from "@/components/Footer/app";
+import AuthProvider from "@/components/Auth/AuthProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,17 +20,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className} >
-        <Providers themeProps={{attribute: 'class', defaultTheme: "light"}}>
-          <NavBar />
-        {children}
-        <Footer />
-
-        
-
-        </Providers>
+    <AuthProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
+            <NavBar />
+            {children}
+            <Footer />
+          </Providers>
         </body>
-    </html>
+      </html>
+    </AuthProvider>
   );
 }

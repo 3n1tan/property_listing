@@ -25,7 +25,7 @@ interface SingleListProps {
 }
 
 async function fetchListing(params: { id: string }) {
-  const res = await fetch(`http://localhost:3000/api/listing/${params.id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}/listing/${params.id}`, {
     cache: "no-store",
   });
 

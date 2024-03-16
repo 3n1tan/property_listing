@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -25,18 +25,30 @@ import { Icon } from "@iconify/react";
 import { usePathname } from "next/navigation";
 import { AcmeIcon } from "./social";
 import { GoogleIcon, GithubIcon } from "./social";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 import NotificationsCard from "./notifications-card";
 import { ThemeSwitcher } from "../DarkMode/switch_theme";
 import Image from "next/image";
 
 export default function Component() {
+  const { status, data: session } = useSession();
   const path = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [providers, setProviders] = useState<Record<string, any> | null>(null); 
   const handleLinkClick = () => {
     setIsMenuOpen(false);
   };
+
+  useEffect(() => {
+    const setAuthProviders = async () => {
+      const res = await getProviders();
+      setProviders(res);
+    };
+
+    setAuthProviders();
+  }, []);
+
   return (
     <Navbar
       classNames={{
@@ -86,7 +98,7 @@ export default function Component() {
             Listing
           </Link>
         </NavbarItem>
-        {isLoggedIn && (
+        {session && (
           <NavbarItem>
             <Link
               className={`${
@@ -101,19 +113,26 @@ export default function Component() {
           </NavbarItem>
         )}
       </NavbarContent>
-      {!isLoggedIn && (
+      {!session && (
         <NavbarContent
-          className="hidden lg:flex h-12 max-w-fit items-center gap-0 rounded-full p-0 lg:bg-content2 lg:px-5 lg:dark:bg-content1 xl:ml-[10rem]"
+          className="hidden lg:flex max-w-fit items-center gap-0 rounded-full p-0 lg:bg-content2 lg:dark:bg-content1 xl:ml-[10rem]"
           justify="center"
         >
-          <Link className="flex gap-2 text-inherit" href="#">
-            <GoogleIcon />
-            <GithubIcon />
-            Login / Register
-          </Link>
+          {providers &&
+            Object.values(providers).map((provider, index) => (
+              <Button
+                className=""
+                href="#"
+                key={index}
+                onClick={() => signIn(provider.id)}
+              >
+                <GoogleIcon />
+                Login / Register
+              </Button>
+            ))}
         </NavbarContent>
       )}
-      {isLoggedIn && (
+      {session && (
         <NavbarContent
           className="ml-auto flex h-12 max-w-fit items-center gap-0 rounded-full p-0 lg:bg-content2 lg:px-1 lg:dark:bg-content1"
           justify="end"
@@ -219,7 +238,7 @@ export default function Component() {
             Listing
           </Link>
         </NavbarMenuItem>
-        {isLoggedIn && (
+        {session && (
           <NavbarMenuItem>
             <Link
               className={`${
@@ -235,17 +254,20 @@ export default function Component() {
             </Link>
           </NavbarMenuItem>
         )}
-        {!isLoggedIn && (
+        {!session && (
           <NavbarMenuItem>
-            <Link
-              className="flex gap-2 text-inherit"
-              href="#"
-              onClick={handleLinkClick}
-            >
-              <GoogleIcon />
-              <GithubIcon />
-              Login
-            </Link>
+            {providers &&
+              Object.values(providers).map((provider, index) => (
+                <Button
+                  className=""
+                  href="#"
+                  key={index}
+                  onClick={() => signIn(provider.id)}
+                >
+                  <GoogleIcon />
+                  Login / Register
+                </Button>
+              ))}
           </NavbarMenuItem>
         )}
 
