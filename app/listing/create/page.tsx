@@ -1,10 +1,12 @@
+import NewListForm from '@/components/Forms/NewList/NewListForm'
 import ListCard from '@/components/UI/ListCard/listCard'
 import React from 'react'
 
 const CreateListing = () => {
   return (
     <div className='w-full min-h-screen'>
-        You can create new listing here
+      
+        <NewListForm />
         
     </div>
   )
