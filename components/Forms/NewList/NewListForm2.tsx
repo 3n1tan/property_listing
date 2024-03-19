@@ -14,7 +14,7 @@ import { apartments } from "@/components/UI/HeroBanner/data";
 const NewListForm = () => {
   const onSubmit = (data: FieldValues) => {
     const formData = { ...data };
-    // console.log(formData);
+    console.log(formData);
   };
 
   const handleInputChanges = (event: React.ChangeEvent<HTMLInputElement>) => {
