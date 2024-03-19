@@ -14,13 +14,18 @@ import { FieldValues, useForm, Controller } from "react-hook-form";
 import { amenities, apartments } from "@/components/UI/HeroBanner/data";
 
 const NewListForm = () => {
-  const { register, control } = useForm();
+  const { register, control, handleSubmit } = useForm();
+
+  const onSubmit = (data: FieldValues) => {
+    const formData = { ...data };
+    console.log(formData);
+  };
   return (
     <div>
-      <h1>Create New Listing</h1>
+      <h1 className="text-center lg:text-4xl text-2xl font-semibold">Create New Listing</h1>
       <div>
-        <form action="" className="lg:px-9 border mx-auto rounded-md max-w-[70rem]">
-          <div>
+        <form action="" className="lg:px-9 px-3 space-y-5 border mx-auto rounded-md max-w-[70rem]" onSubmit={handleSubmit(onSubmit)}>
+          <div className="lg:mt-9 lg:mb-[3rem]">
             <Select
               label="Property-Type"
               className=""
@@ -36,12 +41,13 @@ const NewListForm = () => {
             </Select>
           </div>
 
-          <div>
+          <div className="lg:mt-[3rem]">
             <Input 
                 type="text"
                 label= "Listing Name"
                 labelPlacement="outside"
                 placeholder="Enter Listing Name"
+                className=""
                 size="lg"
                 {...register("name")}
             />
@@ -51,14 +57,16 @@ const NewListForm = () => {
             <Textarea 
                 label="Description"
                 placeholder="Add an optional description of property"
-                className="max-w-full"
+                className="lg:mt-[1rem] "
+                classNames={{ base: "max-w-full", label: "text-lg"}}
                 labelPlacement="outside"
                 size="lg"
             />
           </div>
 
           <div>
-            <h2>Location</h2>
+            <h2 className="mb-5">Location</h2>
+            <div className="grid gap-5">
             <Input
                 type="text"
                 placeholder="Enter Street Name"
@@ -87,9 +95,11 @@ const NewListForm = () => {
                 size="lg"
                 {...register("location.zipcode")}
             />
+
+            </div>
           </div>
 
-          <div className="flex ">
+          <div className="lg:flex grid gap-4  ">
             <Input
                 label="Beds"
                 labelPlacement="outside"
@@ -163,6 +173,8 @@ const NewListForm = () => {
               radius="sm"
               {...register("seller_info.phone")}
             />
+
+<Button type="submit">Submit</Button>
           </div>
         </form>
       </div>
