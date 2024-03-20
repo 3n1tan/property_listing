@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import connect from "@/utils/dbConnect";
 import Listing from "@/models/Listing";
-import { request } from "http";
+
 
 
 export const GET = async (request: NextRequest) => {
@@ -13,6 +13,22 @@ export const GET = async (request: NextRequest) => {
         return new NextResponse("Error in fetching listings " + error, {status: 500})
     }
 }
+
+
+
+export const POST = (request:NextRequest) => {
+    try {
+
+        return NextResponse.json({message: "New Listing successfully added"}, {status: 200})
+
+    } catch(error){
+
+        return NextResponse.json({message: "Server failure"}, {status: 500})
+
+    }
+}
+
+
 
 // export const POST = async (request: NextRequest) => {
 //     try {

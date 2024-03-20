@@ -15,36 +15,60 @@ import { amenities, apartments } from "@/components/UI/HeroBanner/data";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
+
 const NewListForm = () => {
   const { register, control, handleSubmit } = useForm();
 
-  const onSubmit = (data: FieldValues) => {
-    const formData = { ...data };
+  const onSubmit = async (data: FieldValues) => {
+    // const formData = {...data}
+    let config = {
+      method: 'POST',
+      url: "http://localhost:3000/api/listing",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: data
+    };
 
-    console.log(formData);
-    // axios.post("http://localhost:3000/api/listing", formData, {
-    //   headers: {
-    //     'Content-Type': 'multipart/form-data'
-    //   }
-    // })
-    // .then(res => {
-    //   alert("New Listing successfully submitted");
-    // })
-    // .catch(err => {
-    //   console.log(err)
-    // })
+    try {
+      const res = await axios(config);
+      console.log(res.config.data);
+      if(res.status == 200){
+        console.log("Done it!!!!!")
+      }
+
+    } catch(err) {
+      console.error(err)
+    }
+    // const formData = { ...data };
+    // console.log(formData);
+
+
+
+    // axios
+    //   .post("http://localhost:3000/api/listing", formData, {
+    //     headers: {
+    //       "Content-Type": "multipart/form-data",
+    //     },
+    //   })
+    //   .then((res) => {
+    //     alert("New Listing successfully submitted");
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
   return (
     <div>
       <h1 className="text-center lg:text-4xl text-2xl font-semibold">
         Create New Listing
       </h1>
-      <div>
+      <div className="shadow-inherit">
         <form
           action=""
           className="lg:px-9 px-3 space-y-5 border mx-auto rounded-md max-w-[70rem]"
           onSubmit={handleSubmit(onSubmit)}
-          // encType="multipart/form-data"
+          encType="multipart/form-data"
         >
           <div className="lg:mt-9 lg:mb-[3rem]">
             <Select
@@ -191,6 +215,39 @@ const NewListForm = () => {
           </div>
 
           <div>
+            <h2 className="pb-9">Rates (Leave blank if not applicable )</h2>
+            <div className="flex ">
+              <Input
+                label="Nightly"
+                type="text"
+                labelPlacement="outside-left"
+                defaultValue=""
+                size="lg"
+                placeholder="Enter amount"
+                {...register("rates.nightly")}
+              />
+              <Input
+                label="Weekly"
+                type="text"
+                labelPlacement="outside-left"
+                defaultValue=""
+                size="lg"
+                placeholder="Enter amount"
+                {...register("rates.weekly")}
+              />
+              <Input
+                label="Monthly"
+                type="text"
+                labelPlacement="outside-left"
+                defaultValue=""
+                size="lg"
+                placeholder="Enter amount"
+                {...register("rates.monthly")}
+              />
+            </div>
+          </div>
+
+          <div>
             <h2>Host's Details</h2>
             <Input
               type="text"
@@ -229,7 +286,13 @@ const NewListForm = () => {
               label="Images (Select up to 4)"
               labelPlacement="outside"
               defaultValue=""
-              classNames={{mainWrapper: "h-[9rem] py-3 max-w-fit", innerWrapper: "max-w-fit mt-[5rem]"}}
+              classNames={{
+                mainWrapper: "h-[9rem] py-3 max-w-fit",
+                inputWrapper: "bg-transparent",
+                innerWrapper: "max-w-fit mt-[5rem]",
+                input: "text-lg",
+                label: "text-lg text-red-300",
+              }}
               type="file"
               {...register("images")}
               multiple
