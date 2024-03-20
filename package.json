@@ -16,6 +16,7 @@
     "@nextui-org/react": "^2.2.10",
     "@nextui-org/system": "^2.0.15",
     "@nextui-org/theme": "^2.1.18",
+    "axios": "^1.6.8",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.8",
     "mongodb": "^6.5.0",
