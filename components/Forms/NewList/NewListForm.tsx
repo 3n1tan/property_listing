@@ -317,95 +317,10 @@ const NewListForm = () => {
               {...register('images')}
               multiple
               accept="image/*"
+             
               
             />
           </div>
-
-          {/* <div>
-            <Controller
-              control={control}
-              name="images"
-              render={({ field: { value, onChange, ...field } }) => {
-                return (
-                  <Input
-                    {...field}
-                    value={value?.map((file: File) => file.name).join(", ") || ""}
-                    onChange={(event) => {
-                      const {files} = event.target;
-                      if(files) {
-                        const fileList = Array.from(files);
-                        const selectedFile = fileList.slice(0, 4);
-                        onChange(selectedFile)
-                      }
-                    }}
-                    label="Images (Select up to 4)"
-                    labelPlacement="outside"
-                    defaultValue=""
-                    classNames={{
-                      mainWrapper: "h-[9rem] py-3 max-w-fit",
-                      inputWrapper: "bg-transparent",
-                      innerWrapper: "max-w-fit mt-[5rem]",
-                      input: "text-lg",
-                      label: "text-lg text-red-300",
-                    }}
-                    type="file"
-                    multiple
-                    accept="image/*"
-                  />
-                );
-              }}
-            />
-          </div> */}
-
-          {/* <Controller
-            control={control}
-            name="images"
-            rules={{ required: "Listing picture is required" }}
-            render={({ field: { value, onChange, ...field } }) => {
-              const handleFileChange = (
-                event: React.ChangeEvent<HTMLInputElement>
-              ) => {
-                const files = event.target.files;
-                if (files && files.length > 0) {
-                  const fileList = Array.from(files).slice(0, 4);
-                  // Display an error message or handle the case when more than 4 files are selected
-                  onChange(fileList);
-                  //   console.error("You can only upload a maximum of 4 files.");
-                  //   return;
-                }
-                // Update the field value with the selected file(s)
-              };
-
-              return (
-                <Input
-                  {...field}
-                  onChange={handleFileChange}
-                  type="file"
-                  multiple
-                  id="images"
-                />
-              );
-            }}
-          /> */}
-
-          {/* <Controller
-            control={control}
-            name={"images"}
-            rules={{ required: "Listing picture is required" }}
-            render={({ field: { value, onChange, ...field } }) => {
-              return (
-                <Input
-                  {...field}
-                  value={value?.fileName}
-                  onChange={(event) => {
-                    onChange(event.target.files?.[0]);
-                  }}
-                  type="file"
-                  id="picture"
-                />
-              );
-            }}
-          /> */}
 
           <Button type="submit">Submit Listing</Button>
         </form>
