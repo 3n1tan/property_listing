@@ -82,7 +82,7 @@ const NewListForm = () => {
               console.log(err)
             })
 
-    console.log("Form Submitted", data.images);
+    console.log("Form Submitted", data.images[0].name);
   };
 
 
@@ -97,7 +97,7 @@ const NewListForm = () => {
           // method="POST"
           className="lg:px-9 px-3 space-y-5 border mx-auto rounded-md max-w-[70rem]"
           onSubmit={handleSubmit(onSubmit)}
-          // encType="multipart/form-data"
+          encType="multipart/form-data"
         >
           <div className="lg:mt-9 lg:mb-[3rem]">
             <Select
@@ -316,9 +316,7 @@ const NewListForm = () => {
               type="file" 
               {...register('images')}
               multiple
-              accept="image/*"
-             
-              
+              accept="image/*"        
             />
           </div>
 

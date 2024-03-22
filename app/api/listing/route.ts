@@ -46,7 +46,7 @@ export const POST = async (request:NextRequest) => {
     try {
 
         const body = await request.json();
-        console.log(body.images)
+        console.log(body.images[0].name)
 
         return NextResponse.json({message: "Success is here!!!"}, {status: 200})
 
