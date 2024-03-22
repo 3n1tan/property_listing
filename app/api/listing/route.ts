@@ -2,7 +2,33 @@ import { NextRequest, NextResponse } from "next/server";
 import connect from "@/utils/dbConnect";
 import Listing from "@/models/Listing";
 
-
+type FormValues = {
+    name: string;
+    type: string;
+    description: string;
+    location: {
+      street: string;
+      city: string;
+      state: string;
+      zipcode: string;
+    };
+    beds: string;
+    baths: string;
+    square_feet: string;
+    amenities: string[];
+    rates: {
+      nightly: string;
+      weekly: string;
+      monthly: string;
+    };
+    seller_info: {
+      name: string;
+      email: string;
+      phone: string;
+    };
+    images: File[];
+  };
+  
 
 export const GET = async (request: NextRequest) => {
     try {
@@ -16,75 +42,19 @@ export const GET = async (request: NextRequest) => {
 
 
 
-export const POST = (request:NextRequest) => {
+export const POST = async (request:NextRequest) => {
     try {
 
-        return NextResponse.json({message: "New Listing successfully added"}, {status: 200})
+        const body = await request.json();
+        console.log(body.images)
 
-    } catch(error){
+        return NextResponse.json({message: "Success is here!!!"}, {status: 200})
 
-        return NextResponse.json({message: "Server failure"}, {status: 500})
+    } catch (error) {
+        return NextResponse.json({message: "Error occurred"}, {status: 504})
+    }
 
     }
-}
 
 
 
-// export const POST = async (request: NextRequest) => {
-//     try {
-//         const body = await request.json();
-//         const {name, type, description, location, beds, baths, square_feet, amenities, rates, seller_info, images} = body;
-//         console.log(body);
-
-//         return NextResponse.json({message: "Successful"}, {status: 200})
-
-//     } catch(error){
-//         return NextResponse.json({message: "POST erro"}, {status: 500})
-//     }
-// }
-
-
-// export const POST = async (request: NextRequest) => {
-//     try {
-//         const body = await request.json();
-
-//         // Destructure the request body
-//         const { name, type, description, beds, baths, square_feet, rates, seller_info } = body;
-
-//         // Convert amenities to an array
-//         const amenities: string[] = Array.isArray(body.amenities) ? body.amenities : [];
-
-//         // Convert images to an array of objects
-//         const images: { url: string }[] = Array.isArray(body.images) ? body.images.map((image: string) => ({ url: image })) : [];
-
-//         // Convert location to an object
-//         const location: { street: string, city: string, state: string, zipcode: string } = body.location ? {
-//             street: body.location.street || "",
-//             city: body.location.city || "",
-//             state: body.location.state || "",
-//             zipcode: body.location.zipcode || ""
-//         } : {street: "", city: "", state: "", zipcode: ""};
-
-//         // Log the processed data
-//         console.log({
-//             name,
-//             type,
-//             description,
-//             location,
-//             beds,
-//             baths,
-//             square_feet,
-//             amenities,
-//             rates,
-//             seller_info,
-//             images
-//         });
-
-//         // Return a success response
-//         return NextResponse.json({ message: "Successful" }, { status: 200 });
-
-//     } catch (error) {
-//         // Return an error response
-//         return NextResponse.json({ message: "POST error" }, { status: 500 });
-//     }
-// };

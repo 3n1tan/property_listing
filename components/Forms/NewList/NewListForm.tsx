@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import {
   Button,
   SelectItem,
@@ -9,55 +9,83 @@ import {
   Textarea,
   cn,
 } from "@nextui-org/react";
-import React from "react";
-import { FieldValues, useForm, Controller } from "react-hook-form";
+import React, { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
 import { amenities, apartments } from "@/components/UI/HeroBanner/data";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 
-
-const NewListForm = () => {
-  const { register, control, handleSubmit } = useForm();
-
-  const onSubmit = async (data: FieldValues) => {
-    // const formData = {...data}
-    let config = {
-      method: 'POST',
-      url: "http://localhost:3000/api/listing",
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data: data
-    };
-
-    try {
-      const res = await axios(config);
-      console.log(res.config.data);
-      if(res.status == 200){
-        console.log("Done it!!!!!")
-      }
-
-    } catch(err) {
-      console.error(err)
-    }
-    // const formData = { ...data };
-    // console.log(formData);
-
-
-
-    // axios
-    //   .post("http://localhost:3000/api/listing", formData, {
-    //     headers: {
-    //       "Content-Type": "multipart/form-data",
-    //     },
-    //   })
-    //   .then((res) => {
-    //     alert("New Listing successfully submitted");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+type FormValues = {
+  name: string;
+  type: string;
+  description: string;
+  location: {
+    street: string;
+    city: string;
+    state: string;
+    zipcode: string;
   };
+  beds: string;
+  baths: string;
+  square_feet: string;
+  amenities: string[];
+  rates: {
+    nightly: string;
+    weekly: string;
+    monthly: string;
+  };
+  seller_info: {
+    name: string;
+    email: string;
+    phone: string;
+  };
+  images: File[];
+};
+const NewListForm = () => {
+
+  const form = useForm<FormValues>({
+    defaultValues: {
+      name: "Eldo Chalet",
+      type: "Apartment",
+      description: "Home sweet home",
+      location: {
+        street: "Kaustisentie 7 A 28",
+        city: "Helsinki",
+        state: "Uusimaa",
+        zipcode: "00420",
+      },
+      beds: "2",
+      baths: "2",
+      square_feet: "70",
+      amenities: [],
+      rates: {
+        nightly: "",
+        weekly: "800",
+        monthly: "3000",
+      },
+      seller_info: {
+        name: "Eniola Tenhio-Odupitan",
+        email: "eniola@gmail.com",
+        phone: "0449844058",
+      },
+      images: [],
+    },
+  });
+  const { register, control, handleSubmit, watch } = form;
+
+  const onSubmit = (data: FormValues) => {
+    const formData = {...data};
+    axios.post("http://localhost:3000/api/listing", formData)
+            .then(res => {
+              alert("New Listing successfully added");
+            })
+            .catch(err => {
+              console.log(err)
+            })
+
+    console.log("Form Submitted", data.images);
+  };
+
+
   return (
     <div>
       <h1 className="text-center lg:text-4xl text-2xl font-semibold">
@@ -65,10 +93,11 @@ const NewListForm = () => {
       </h1>
       <div className="shadow-inherit">
         <form
-          action=""
+          // action="/api/listing"
+          // method="POST"
           className="lg:px-9 px-3 space-y-5 border mx-auto rounded-md max-w-[70rem]"
           onSubmit={handleSubmit(onSubmit)}
-          encType="multipart/form-data"
+          // encType="multipart/form-data"
         >
           <div className="lg:mt-9 lg:mb-[3rem]">
             <Select
@@ -203,6 +232,7 @@ const NewListForm = () => {
                     <Checkbox
                       key={index}
                       defaultValue=""
+                      // {...register(`amenities.${amenity}.value`)}
                       value={amenity.value}
                       className="font-semibold"
                     >
@@ -282,23 +312,50 @@ const NewListForm = () => {
           </div>
 
           <div>
-            <Input
-              label="Images (Select up to 4)"
-              labelPlacement="outside"
-              defaultValue=""
-              classNames={{
-                mainWrapper: "h-[9rem] py-3 max-w-fit",
-                inputWrapper: "bg-transparent",
-                innerWrapper: "max-w-fit mt-[5rem]",
-                input: "text-lg",
-                label: "text-lg text-red-300",
-              }}
-              type="file"
-              {...register("images")}
+            <input 
+              type="file" 
+              {...register('images')}
               multiple
               accept="image/*"
+              
             />
           </div>
+
+          {/* <div>
+            <Controller
+              control={control}
+              name="images"
+              render={({ field: { value, onChange, ...field } }) => {
+                return (
+                  <Input
+                    {...field}
+                    value={value?.map((file: File) => file.name).join(", ") || ""}
+                    onChange={(event) => {
+                      const {files} = event.target;
+                      if(files) {
+                        const fileList = Array.from(files);
+                        const selectedFile = fileList.slice(0, 4);
+                        onChange(selectedFile)
+                      }
+                    }}
+                    label="Images (Select up to 4)"
+                    labelPlacement="outside"
+                    defaultValue=""
+                    classNames={{
+                      mainWrapper: "h-[9rem] py-3 max-w-fit",
+                      inputWrapper: "bg-transparent",
+                      innerWrapper: "max-w-fit mt-[5rem]",
+                      input: "text-lg",
+                      label: "text-lg text-red-300",
+                    }}
+                    type="file"
+                    multiple
+                    accept="image/*"
+                  />
+                );
+              }}
+            />
+          </div> */}
 
           {/* <Controller
             control={control}

@@ -13,7 +13,7 @@ export const apartments = [
 
 export const amenities = [
   {label: "Wifi", value:"Wifi"},
-  {label: "Full Kitchen", value:"full kitchen"},
+  {label: "Full Kitchen", value:"Full Kitchen"},
   {label: "Washer & Dryer", value:"Washer & Dryer"},
   {label: "Free Parking", value:"Free Parking"},
   {label: "Hot Tub", value:"Hot Tub"},
