@@ -42,19 +42,37 @@ export const GET = async (request: NextRequest) => {
 
 
 
-export const POST = async (request:NextRequest) => {
-    try {
+// export const POST = async (request:NextRequest) => {
+//     try {
 
-        const body = await request.json();
-        console.log(body.images[0].name)
+//         const body = await request.json();
+//         console.log(body.file)
 
-        return NextResponse.json({message: "Success is here!!!"}, {status: 200})
+//         return NextResponse.json({message: "Success is here!!!"}, {status: 200})
+//         // return NextResponse.json(body.images)
 
-    } catch (error) {
-        return NextResponse.json({message: "Error occurred"}, {status: 504})
-    }
+//     } catch (error) {
+//         return NextResponse.json({message: "Error occurred"}, {status: 504})
+//     }
 
-    }
+//     }
+
+    
+
+export async function POST(request: NextRequest){
+  try {
+    const body = await request.formData();
+    console.log(body.getAll('images'));
+    console.log(body.get('amenities'));
+    return NextResponse.json({message: "Success is here!!!"}, {status: 200})
+  
+  } catch (error) {
+    return NextResponse.json({message: "Error occurred"}, {status: 504})
+  
+  }
+
+
+}
 
 
 

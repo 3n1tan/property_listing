@@ -1,4 +1,5 @@
 import NewListForm from '@/components/Forms/NewList/NewListForm'
+import TestForm from '@/components/Forms/TestForm'
 import ListCard from '@/components/UI/ListCard/listCard'
 import React from 'react'
 
@@ -6,7 +7,8 @@ const CreateListing = () => {
   return (
     <div className='w-full min-h-screen'>
       
-        <NewListForm />
+        {/* <NewListForm /> */}
+      
         
     </div>
   )

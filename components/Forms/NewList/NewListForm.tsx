@@ -10,7 +10,7 @@ import {
   cn,
 } from "@nextui-org/react";
 import React, { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm, Controller, FieldValue } from "react-hook-form";
 import { amenities, apartments } from "@/components/UI/HeroBanner/data";
 import axios from "axios";
 
@@ -70,21 +70,51 @@ const NewListForm = () => {
       images: [],
     },
   });
-  const { register, control, handleSubmit, watch } = form;
+  const { register, control, handleSubmit, watch, setValue } = form;
 
-  const onSubmit = (data: FormValues) => {
-    const formData = {...data};
-    axios.post("http://localhost:3000/api/listing", formData)
-            .then(res => {
-              alert("New Listing successfully added");
-            })
-            .catch(err => {
-              console.log(err)
-            })
+  // const [picture, setPicture] = useState<string | null>(null);
 
-    console.log("Form Submitted", data.images[0].name);
-  };
+  // const onChangePicture = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setPicture(URL.createObjectURL(e.target.files![0]));
+  // };
 
+  const onSubmit = async (data: FormValues) => {
+    const formData = new FormData();
+
+    formData.append("name", data.name);
+    formData.append("type", data.type);
+    formData.append("description", data.description);
+    formData.append("location", JSON.stringify(data.location));
+    formData.append("beds", data.beds);
+    formData.append("baths", data.baths);
+    formData.append("square_feet", data.square_feet);
+    formData.append("amenities", JSON.stringify(data.amenities));
+    formData.append("rates", JSON.stringify(data.rates));
+    formData.append("seller_info", JSON.stringify(data.seller_info));
+
+    Array.from(data.images).forEach((image) => {
+      formData.append("images", image);
+    }
+
+    );
+
+
+
+    try {
+      const response = await fetch("http://localhost:3000/api/listing", {
+        method: "POST",
+        body: formData,
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const res = await response.json();
+      console.log(res);
+      console.log(formData.get('description'));
+    } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+    }
+  }
 
   return (
     <div>
@@ -92,12 +122,9 @@ const NewListForm = () => {
         Create New Listing
       </h1>
       <div className="shadow-inherit">
-        <form
-          // action="/api/listing"
-          // method="POST"
+        <form        
           className="lg:px-9 px-3 space-y-5 border mx-auto rounded-md max-w-[70rem]"
           onSubmit={handleSubmit(onSubmit)}
-          encType="multipart/form-data"
         >
           <div className="lg:mt-9 lg:mb-[3rem]">
             <Select
@@ -316,7 +343,8 @@ const NewListForm = () => {
               type="file" 
               {...register('images')}
               multiple
-              accept="image/*"        
+              accept="image/*"
+              // onChange={onChangePicture}
             />
           </div>
 
