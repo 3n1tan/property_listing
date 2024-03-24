@@ -50,7 +50,6 @@ export default function Component() {
     setAuthProviders();
   }, []);
 
-  console.log(profileImage);
 
   return (
     <Navbar
