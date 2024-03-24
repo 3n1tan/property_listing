@@ -12,6 +12,8 @@ import {
 import React from "react";
 import { useForm, Controller, FieldValue } from "react-hook-form";
 import { amenities, apartments } from "@/components/UI/HeroBanner/data";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
 type FormValues = {
   name: string;
@@ -41,6 +43,9 @@ type FormValues = {
   images: File[];
 };
 const NewListForm = () => {
+
+  const router = useRouter();
+  
   const form = useForm<FormValues>({
     defaultValues: {
       name: "",
@@ -69,7 +74,7 @@ const NewListForm = () => {
       images: [],
     },
   });
-  const { register, control, handleSubmit } = form;
+  const { register, control, handleSubmit, reset } = form;
 
   const onSubmit = async (data: FormValues) => {
     const formData = new FormData();
@@ -81,10 +86,6 @@ const NewListForm = () => {
     formData.append("location[city]", data.location.city);
     formData.append("location[state]", data.location.state);
     formData.append("location[zipcode]", data.location.zipcode);
-    // formData.append("street", data.location.street);
-    // formData.append("city", data.location.city);
-    // formData.append("state", data.location.state);
-    // formData.append("zipcode", data.location.zipcode);
     Array.isArray(data.amenities) &&
       data.amenities.map((amenity) => {
         formData.append("amenities", amenity);
@@ -92,9 +93,9 @@ const NewListForm = () => {
     formData.append("beds", data.beds);
     formData.append("baths", data.baths);
     formData.append("square_feet", data.square_feet);
-    formData.append("nightly", data.rates.nightly);
-    formData.append("weekly", data.rates.weekly);
-    formData.append("monthly", data.rates.monthly);
+    formData.append("rates[nightly]", data.rates.nightly);
+    formData.append("rates[weekly]", data.rates.weekly);
+    formData.append("rates[monthly]", data.rates.monthly);
     formData.append("seller_info[name]", data.seller_info.name);
     formData.append("seller_info[email]", data.seller_info.email);
     formData.append("seller_info[phone]", data.seller_info.phone);
@@ -104,18 +105,34 @@ const NewListForm = () => {
     });
 
     try {
-      const response = await fetch("http://localhost:3000/api/listing", {
-        method: "POST",
-        body: formData,
-      });
-      if (!response.ok) {
+      const response = await axios.post("http://localhost:3000/api/listing", formData);
+  
+      if (!response) {
         throw new Error("Network response was not ok");
       }
-      const res = await response.json();
-      console.log(res);
+  
+      const res = response.data;
+      alert("Listing created successfully");
+      // Perform further actions with the response
+      router.push(`/listing`);
+      router.refresh();
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error);
     }
+    reset();
+
+    // try {
+    //   const response = await fetch("http://localhost:3000/api/listing", {
+    //     method: "POST",
+    //     body: formData,
+    //   });
+    //   if (!response.ok) {
+    //     throw new Error("Network response was not ok");
+    //   }
+    //   const res = await response.json();
+    // } catch (error) {
+    //   console.error("There was a problem with the fetch operation:", error);
+    // }
   };
 
   return (
@@ -347,7 +364,6 @@ const NewListForm = () => {
               {...register("images")}
               multiple
               accept="image/*"
-              // onChange={onChangePicture}
             />
           </div>
 
