@@ -43,9 +43,8 @@ type FormValues = {
   images: File[];
 };
 const NewListForm = () => {
-
   const router = useRouter();
-  
+
   const form = useForm<FormValues>({
     defaultValues: {
       name: "",
@@ -105,12 +104,15 @@ const NewListForm = () => {
     });
 
     try {
-      const response = await axios.post("http://localhost:3000/api/listing", formData);
-  
+      const response = await axios.post(
+        "http://localhost:3000/api/listing",
+        formData
+      );
+
       if (!response) {
         throw new Error("Network response was not ok");
       }
-  
+
       const res = response.data;
       alert("Listing created successfully");
       // Perform further actions with the response
@@ -120,19 +122,6 @@ const NewListForm = () => {
       console.error("There was a problem with the fetch operation:", error);
     }
     reset();
-
-    // try {
-    //   const response = await fetch("http://localhost:3000/api/listing", {
-    //     method: "POST",
-    //     body: formData,
-    //   });
-    //   if (!response.ok) {
-    //     throw new Error("Network response was not ok");
-    //   }
-    //   const res = await response.json();
-    // } catch (error) {
-    //   console.error("There was a problem with the fetch operation:", error);
-    // }
   };
 
   return (
@@ -279,7 +268,6 @@ const NewListForm = () => {
                     <Checkbox
                       key={index}
                       defaultValue=""
-                      // {...register(`amenities.${amenity}.value`)}
                       value={amenity.value}
                       className="font-semibold"
                     >

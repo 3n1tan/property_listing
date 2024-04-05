@@ -65,7 +65,8 @@ const ListCard: React.FC<ListCardProps> = ({listing}) => {
     <Card className="rounded-xl shadow-md relative w-[24rem]">
       <div className="relative w-[25rem] h-[12rem] overflow-hidden rounded-t-xl">
         <Image
-          src={`/images/properties/${listing.images[0]}`}
+          // src={`/images/properties/${listing.images[0]}`}
+          src={listing.images[0]}
           alt=""
           width={600}
           height={1}
@@ -78,7 +79,7 @@ const ListCard: React.FC<ListCardProps> = ({listing}) => {
       </h3>
 
       <CardBody>
-        <div className="font-medium text-small text-default-400">{listing.type}</div>
+        <div className="font-medium text-small text-default-400 capitalize">{listing.type}</div>
         <h3 className="text-xl tracking-tighter font-semibold mt-2">
           {listing.name}
         </h3>

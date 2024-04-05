@@ -17,6 +17,8 @@ import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
 import BathtubOutlinedIcon from "@mui/icons-material/BathtubOutlined";
 import SpaceDashboardOutlinedIcon from "@mui/icons-material/SpaceDashboardOutlined";
 import CheckIcon from "@mui/icons-material/Check";
+import { List } from "@mui/material";
+import ListingImages from "@/components/UI/Listings/ListingImages";
 
 interface SingleListProps {
   params: {
@@ -163,6 +165,14 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
                 </li>
               ))}
           </ul>
+        </CardBody>
+      </Card>
+      <div className="lg:mt-8 lg:mb-8 mt-4 mb-4">
+        <Divider />
+      </div>
+      <Card className="bg-[#FBFFF4] pb-9">
+        <CardBody>
+          <ListingImages images={singleList.images} />
         </CardBody>
       </Card>
     </div>
