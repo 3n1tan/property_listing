@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connect from "@/utils/dbConnect";
 import Listing from "@/models/Listing";
 import { getSessionUser } from "@/utils/getSessionUser";
-
+import cloudinary from "@/config/cloudinary";
 
 type FormValues = {
   name: string;
@@ -43,7 +43,7 @@ export const GET = async (request: NextRequest) => {
   }
 };
 
-export async function POST(Request: NextRequest, Response:NextResponse){
+export async function POST(Request: NextRequest, Response: NextResponse) {
   try {
     await connect();
 
@@ -53,7 +53,7 @@ export async function POST(Request: NextRequest, Response:NextResponse){
       return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
     }
 
-    const {userId} = sessionUser;
+    const { userId } = sessionUser;
 
     const body = await Request.formData();
 
@@ -82,18 +82,38 @@ export async function POST(Request: NextRequest, Response:NextResponse){
         phone: body.get("seller_info[phone]"),
       },
       owner: userId,
+      images: [] as string[],
       // images: body.getAll("images"),
     };
 
-    console.log(listingData);
+    //Upload Images to Cloudinary
+    const imagesUpload = [];
+    for (const image of body.getAll("images")) {
+      if (image instanceof File) {
+        const imageBuffer = await image.arrayBuffer();
+        const imageArray = new Uint8Array(imageBuffer);
+        const base64Image = Buffer.from(imageArray).toString("base64");
+        const cloudinaryResponse = await cloudinary.uploader.upload(
+          "data:image/png;base64," + base64Image,
+          {
+            folder: "Listing_NextJS",
+          }
+        );
+        imagesUpload.push(cloudinaryResponse.secure_url);
+
+        const imageUpload = await Promise.all(imagesUpload);
+
+        listingData.images = imageUpload;
+      }
+    }
+
+    // console.log(listingData);
 
     const newListing = new Listing(listingData);
-    console.log(newListing);
+    // console.log(newListing);
     await newListing.save();
 
     return new NextResponse("Listing created", { status: 201 });
-
-
   } catch (error) {
     return NextResponse.json({ message: "Error occurred" }, { status: 504 });
   }
