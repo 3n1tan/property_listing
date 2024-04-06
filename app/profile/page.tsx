@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { Button, Spinner } from "@nextui-org/react";
+import {toast } from 'react-toastify';
 
 const ProfilePage = () => {
   const { data: session } = useSession();
@@ -38,8 +39,40 @@ const ProfilePage = () => {
     }
   }, [session]);
 
-  const handleDeleteListing = (listigdId: string) => {
-    console.log("Delete listing with id: ", listigdId);
+  const handleDeleteListing = async (listingId: string) => {
+    const confirmed = window.confirm("Are you sure you want to delete this listing?");
+    if(!confirmed) return;
+    try {
+      const res = await fetch(`/api/listing/${listingId}`, {
+        method: "DELETE",
+      });
+      if (res.status === 200) {
+        const updatedListing = userListings.filter((listing: any) => listing._id !== listingId);
+        setUserListings(updatedListing);
+        toast.success("Listing deleted successfully");
+
+      } else {
+        toast.error("Error deleting listing");
+      }
+    } catch (error) {
+      toast.error("Error deleting listing: " + error);
+    }
+    // if (confirmed) {
+    //   fetch(`/api/listing/${listigdId}`, {
+    //     method: "DELETE",
+    //   })
+    //     .then((res) => {
+    //       if (res.status === 200) {
+    //         setUserListings((prevListings) =>
+    //           prevListings.filter((listing: any) => listing._id !== listigdId)
+    //         );
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       console.error("Error deleting listing: " + error);
+    //     });
+    // }
+    // console.log("Delete listing with id: ", listigdId);
     
   }
   return (
@@ -80,7 +113,7 @@ const ProfilePage = () => {
           ) : (
             <div>
               {userListings.map((listing: any) => (
-                <div key={listing._id}>
+                <div key={listing._id} className="mb-9">
                   <Link href={`/listing/${listing._id}`}>
                     <Image
                       src={listing.images[0]}

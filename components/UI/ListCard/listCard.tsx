@@ -65,12 +65,12 @@ const ListCard: React.FC<ListCardProps> = ({listing}) => {
     <Card className="rounded-xl shadow-md relative w-[24rem]">
       <div className="relative w-[25rem] h-[12rem] overflow-hidden rounded-t-xl">
         <Image
-          // src={`/images/properties/${listing.images[0]}`}
           src={listing.images[0]}
           alt=""
           width={600}
           height={1}
           className="rounded-t-xl object-fit w-full"
+          priority
         />
       </div>
 
