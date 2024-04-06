@@ -14,6 +14,7 @@ import { useForm, Controller, FieldValue } from "react-hook-form";
 import { amenities, apartments } from "@/components/UI/HeroBanner/data";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 type FormValues = {
   name: string;
@@ -113,13 +114,13 @@ const NewListForm = () => {
         throw new Error("Network response was not ok");
       }
 
-      const res = response.data;
-      alert("Listing created successfully");
+      // const res = response.data;
+      toast.success("Listing created successfully");
       // Perform further actions with the response
       router.push(`/listing`);
       router.refresh();
     } catch (error) {
-      console.error("There was a problem with the fetch operation:", error);
+      toast.error("There was a problem with the fetch operation:");
     }
     reset();
   };

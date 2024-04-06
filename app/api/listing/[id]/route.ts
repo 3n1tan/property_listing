@@ -8,6 +8,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connect from "@/utils/dbConnect";
 import Listing from "@/models/Listing";
 import { getSessionUser } from "@/utils/getSessionUser";
+import cloudinary from "@/config/cloudinary";
 
 export const GET = async (request: NextRequest, { params }: { params: { id: string } }) => {
     const { id } = params;
@@ -44,6 +45,19 @@ export const DELETE = async (request: NextRequest, { params }: { params: { id: s
         if(listing.owner.toString() !== userId) {
             return new NextResponse("Unauthorized", { status: 401 });
         }
+
+            // extract public id's from image url in DB
+    const publicIds = listing.images.map((imageUrl: any) => {
+        const parts = imageUrl.split('/');
+        return parts.at(-1).split('.').at(0);
+      });
+   
+      // Delete images from Cloudinary
+      if (publicIds.length > 0) {
+        for (let publicId of publicIds) {
+          await cloudinary.uploader.destroy('Listing_NextJS/' + publicId);
+        }
+      }
 
         await listing.deleteOne();
         return new NextResponse("Listing deleted successfully", { status: 200 });
