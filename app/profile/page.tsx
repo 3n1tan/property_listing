@@ -76,11 +76,11 @@ const ProfilePage = () => {
     
   }
   return (
-    <section className="w-full min-h-[100lvh] lg:max-w-[90rem] lg:mx-auto lg:px-9 px-4 ml-[-10px]">
-      <div className="lg:flex grid">
-        <div className="w-full md:w-1/4">
+    <section className="w-full min-h-[100lvh] lg:max-w-[90rem] lg:mx-auto lg:px-9">
+      <div className="lg:flex grid gap-3">
+        <div className="w-full md:w-1/4 lg:mt-9">
           <h1 className="lg:text-3xl text-lg font-semibold text-center mt-1">
-            User Profile
+            Your Profile
           </h1>
           <div className="flex items-center justify-center mt-4">
             <div className="w-24 h-24 rounded-full overflow-hidden">
@@ -104,7 +104,7 @@ const ProfilePage = () => {
           </div>
         </div>
         <div className="w-full md:w-3/4 h-[10rem]">
-          <h1>Your Listings</h1>
+          <h1 className="text-lg font-semibold mb-9 ">Your Listings</h1>
           {!loading && userListings.length === 0 && (
             <p>You have not created any listings yet</p>
           )}

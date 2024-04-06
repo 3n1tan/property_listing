@@ -54,7 +54,7 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
 
       <Card className="mt-9 bg-[#FBFFF4]">
         <CardHeader className="grid gap-4">
-          <h1 className="text-default-400">{singleList.type}</h1>
+          <h1 className="text-default-400 capitalize">{singleList.type}</h1>
         </CardHeader>
         <CardBody className="gap-5 dark:text-black">
           <p className="lg:text-4xl text-3xl font-semibold tracking-wide">
@@ -157,11 +157,11 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
           <h2 className="font-semibold text-xl">Amenities</h2>
         </CardHeader>
         <CardBody>
-          <ul className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 list-none space-y-2">
+          <ul className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 list-none space-y-1">
             {Array.isArray(singleList.amenities) &&
               singleList.amenities.map((amenity: string[], index: number) => (
                 <li key={index} className="inline-block font-semibold">
-                  <CheckIcon className="text-green-700" /> {amenity}
+                  <CheckIcon className="text-green-700" /> <span className="mx-auto">{amenity}</span>
                 </li>
               ))}
           </ul>
