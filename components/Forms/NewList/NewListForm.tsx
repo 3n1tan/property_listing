@@ -313,7 +313,7 @@ const NewListForm = () => {
           </div>
 
           <div>
-            <h2>Host's Details</h2>
+            <h2>Host Details</h2>
             <Input
               type="text"
               defaultValue=""

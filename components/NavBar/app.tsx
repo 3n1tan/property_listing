@@ -201,8 +201,8 @@ export default function Component() {
                   <p className="font-semibold">Signed in as</p>
                   <p className="font-semibold">{session?.user?.email}</p>
                 </DropdownItem>
-                <DropdownItem key="settings">Your Profile</DropdownItem>
-                <DropdownItem key="team_settings">Saved Listing</DropdownItem>
+                <DropdownItem key="profile" href="/profile">Your Profile</DropdownItem>
+                <DropdownItem key="saved_listing">Saved Listing</DropdownItem>
 
                 <DropdownItem
                   key="logout"
