@@ -306,6 +306,7 @@ const NewListForm = () => {
                 type="text"
                 labelPlacement="outside-left"
                 defaultValue=""
+                
                 size="lg"
                 placeholder="Enter amount"
                 {...register("rates.monthly")}
