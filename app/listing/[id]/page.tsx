@@ -175,7 +175,10 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
           <ListingImages images={singleList.images} />
         </CardBody>
       </Card>
-      <Card>
+      <div className="lg:mt-8 lg:mb-8 mt-4 mb-4">
+        <Divider />
+      </div>
+      <Card className="bg-[#FBFFF4] pb-9">
         <CardBody>
           <ListMap singleList={singleList} />
         </CardBody>
