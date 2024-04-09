@@ -104,6 +104,11 @@ const NewListForm = () => {
       formData.append("images", image);
     });
 
+    console.log(formData.getAll("amenities"))
+
+    // console.log(data);
+    // console.log(formData);
+
     try {
       const response = await axios.post(
         "http://localhost:3000/api/listing",
@@ -121,6 +126,7 @@ const NewListForm = () => {
       router.refresh();
     } catch (error) {
       toast.error("There was a problem with the fetch operation:");
+      console.error("There was a problem with the fetch operation:", error);
     }
     reset();
   };

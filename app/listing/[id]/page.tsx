@@ -6,7 +6,6 @@ import {
   Divider,
   CardBody,
   CardFooter,
-  divider,
   Button,
 } from "@nextui-org/react";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
@@ -19,6 +18,7 @@ import SpaceDashboardOutlinedIcon from "@mui/icons-material/SpaceDashboardOutlin
 import CheckIcon from "@mui/icons-material/Check";
 import { List } from "@mui/material";
 import ListingImages from "@/components/UI/Listings/ListingImages";
+import ListMap from "@/components/UI/ListMap/ListMap";
 
 interface SingleListProps {
   params: {
@@ -173,6 +173,11 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
       <Card className="bg-[#FBFFF4] pb-9">
         <CardBody>
           <ListingImages images={singleList.images} />
+        </CardBody>
+      </Card>
+      <Card>
+        <CardBody>
+          <ListMap singleList={singleList} />
         </CardBody>
       </Card>
     </div>

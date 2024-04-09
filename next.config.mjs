@@ -16,7 +16,12 @@ const nextConfig = {
             protocol: 'https',
             hostname: 'i.pravatar.cc',
             pathname: "**"
-          }
+          },
+          {
+            protocol: 'https',
+            hostname: 'www.vectorstock.com',
+            pathname: "**"
+          },
           ],
       },
 };

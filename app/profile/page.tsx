@@ -57,26 +57,10 @@ const ProfilePage = () => {
     } catch (error) {
       toast.error("Error deleting listing: " + error);
     }
-    // if (confirmed) {
-    //   fetch(`/api/listing/${listigdId}`, {
-    //     method: "DELETE",
-    //   })
-    //     .then((res) => {
-    //       if (res.status === 200) {
-    //         setUserListings((prevListings) =>
-    //           prevListings.filter((listing: any) => listing._id !== listigdId)
-    //         );
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       console.error("Error deleting listing: " + error);
-    //     });
-    // }
-    // console.log("Delete listing with id: ", listigdId);
     
   }
   return (
-    <section className="w-full min-h-[100lvh] lg:max-w-[90rem] lg:mx-auto lg:px-9">
+    <section className="w-full min-h-screen lg:max-w-[90rem] lg:mx-auto lg:px-9 mb-[2rem]">
       <div className="lg:flex grid gap-3">
         <div className="w-full md:w-1/4 lg:mt-9">
           <h1 className="lg:text-3xl text-lg font-semibold text-center mt-1">
@@ -87,7 +71,8 @@ const ProfilePage = () => {
               <Image
                 src={
                   profileImage ||
-                  "https://i.pravatar.cc/150?u=a04258114e29526708c"
+                  // "https://i.pravatar.cc/150?u=a04258114e29526708c"
+                  "https://www.vectorstock.com/royalty-free-vector/male-avatar-profile-picture-vector-10211761"
                 }
                 alt="profile_image"
                 width={200}
@@ -103,10 +88,10 @@ const ProfilePage = () => {
             <p className="lg:text-lg text-sm text-center">{profileEmail}</p>
           </div>
         </div>
-        <div className="w-full md:w-3/4 h-[10rem]">
+        <div className="w-full md:w-3/4">
           <h1 className="text-lg font-semibold mb-9 ">Your Listings</h1>
           {!loading && userListings.length === 0 && (
-            <p>You have not created any listings yet</p>
+            <p className="text-center">You have not created any listings yet</p>
           )}
           {loading ? (
             <Spinner label="Loading" color="warning" labelColor="warning" size="lg" />
@@ -118,9 +103,10 @@ const ProfilePage = () => {
                     <Image
                       src={listing.images[0]}
                       alt={listing.name}
-                      className="h-[15rem] w-full rounded-md object-cover"
-                      width={200}
-                      height={200}
+                      className="object-cover w-full lg:h-[300px] rounded-t-xl"
+                      width={0}
+                      height={0}
+                      sizes="100vw"
                     />
                   </Link>
                   <div>

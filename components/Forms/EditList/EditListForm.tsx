@@ -16,6 +16,7 @@ import { useRouter, useParams } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
+import { get } from "http";
 
 type FormValues = {
   name: string;
@@ -53,8 +54,7 @@ const EditListForm = () => {
   const router = useRouter();
 
   const form = useForm<FormValues>({
-    defaultValues:  {
-
+    defaultValues: {
       name: "",
       type: "",
       description: "",
@@ -78,10 +78,10 @@ const EditListForm = () => {
         email: "",
         phone: "",
       },
-        // images: [],
+      // images: [],
     },
   });
-  const { register, control, handleSubmit, reset, setValue} = form;
+  const { register, control, handleSubmit, reset, setValue, getValues } = form;
 
   useEffect(() => {
     setLoading(true);
@@ -92,33 +92,33 @@ const EditListForm = () => {
           `http://localhost:3000/api/listing/${id}`
         );
         const data = response.data;
-        console.log(data)
+        console.log(data);
         setData(data);
 
         reset({
-            name: data.name,
-            type: data.type,
-            description: data.description,
-            location: {
-                street: data.location.street,
-                city: data.location.city,
-                state: data.location.state,
-                zipcode: data.location.zipcode,
-            },
-            beds: data.beds,
-            baths: data.baths,
-            square_feet: data.square_feet,
-            amenities: data.amenities,
-            rates: {
-                nightly: data.rates.nightly,
-                weekly: data.rates.weekly,
-                monthly: data.rates.monthly,
-            },
-            seller_info: {
-                name: data.seller_info.name,
-                email: data.seller_info.email,
-                phone: data.seller_info.phone,
-            },
+          name: data.name,
+          type: data.type,
+          description: data.description,
+          location: {
+            street: data.location.street,
+            city: data.location.city,
+            state: data.location.state,
+            zipcode: data.location.zipcode,
+          },
+          beds: data.beds,
+          baths: data.baths,
+          square_feet: data.square_feet,
+          amenities: data.amenities,
+          rates: {
+            nightly: data.rates.nightly,
+            weekly: data.rates.weekly,
+            monthly: data.rates.monthly,
+          },
+          seller_info: {
+            name: data.seller_info.name,
+            email: data.seller_info.email,
+            phone: data.seller_info.phone,
+          },
         });
         setLoading(false);
       } catch (error) {
@@ -132,6 +132,54 @@ const EditListForm = () => {
     fetchListData();
   }, []);
 
+  const onSubmit = async (data: FormValues) => {
+    const formData = new FormData();
+
+    formData.append("name", data.name);
+    formData.append("type", data.type);
+    formData.append("description", data.description);
+    formData.append("location[street]", data.location.street);
+    formData.append("location[city]", data.location.city);
+    formData.append("location[state]", data.location.state);
+    formData.append("location[zipcode]", data.location.zipcode);
+
+    const amenities = getValues("amenities"); // getValues is from useForm
+
+    amenities.forEach((amenity: string) => {
+      formData.append("amenities", amenity);
+    });
+
+    formData.append("beds", data.beds);
+    formData.append("baths", data.baths);
+    formData.append("square_feet", data.square_feet);
+    formData.append("rates[nightly]", data.rates.nightly);
+    formData.append("rates[weekly]", data.rates.weekly);
+    formData.append("rates[monthly]", data.rates.monthly);
+    formData.append("seller_info[name]", data.seller_info.name);
+    formData.append("seller_info[email]", data.seller_info.email);
+    formData.append("seller_info[phone]", data.seller_info.phone);
+
+    console.log(formData.get("name"));
+    console.log(formData.getAll("amenities"));
+    console.log(data.amenities);
+
+    console.log(formData);
+    console.log(data); // Make sure form data is constructed correctly
+
+    try {
+      const response = await axios.put(
+        `http://localhost:3000/api/listing/${id}`,
+        formData
+      );
+      if (response.status === 200) {
+        toast.success("Listing updated successfully");
+        router.push(`/listing/${id}`);
+      }
+    } catch (error) {
+      console.error("Error updating listing: " + error);
+      toast.error("Error updating listing");
+    }
+  };
 
   return (
     <div>
@@ -141,7 +189,7 @@ const EditListForm = () => {
       <div className="shadow-inherit">
         <form
           className="lg:px-9 px-3 space-y-5 border mx-auto rounded-md max-w-[70rem]"
-        //   onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleSubmit(onSubmit)}
           encType="multipart/form-data"
         >
           <div className="lg:mt-9 lg:mb-[3rem]">
@@ -162,115 +210,151 @@ const EditListForm = () => {
 
           <div className="lg:mt-[3rem]">
             <Controller
-                name="name"
-                control={control}
-                render={({ field: { onChange, value,  } }) => (
-                    <Input
-                    type="text"
-                    label="Listing Name"
-                    labelPlacement="outside"
-                    placeholder="Enter Listing Name"
-                    className=""
-                    size="lg"
-                    value={value}
-                    onChange={onChange}
-                    />
-                )}
-            >
-
-            </Controller>
-
-            {/* <Input
-              type="text"
-              label="Listing Name"
-              labelPlacement="outside"
-              placeholder="Enter Listing Name"
-              className=""
-              size="lg"
-              {...register("name")}
-            /> */}
+              name="name"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  type="text"
+                  label="Listing Name"
+                  labelPlacement="outside"
+                  placeholder="Enter Listing Name"
+                  className=""
+                  size="lg"
+                  value={value}
+                  onChange={onChange}
+                />
+              )}
+            />
           </div>
 
           <div>
-            <Textarea
-              label="Description"
-              placeholder="Add an optional description of property"
-              className="lg:mt-[1rem] "
-              classNames={{ base: "max-w-full", label: "text-lg" }}
-              labelPlacement="outside"
-              size="lg"
-              {...register("description")}
+            <Controller
+              name="description"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Textarea
+                  label="Description"
+                  placeholder="Add an optional description of property"
+                  className="lg:mt-[1rem] "
+                  classNames={{ base: "max-w-full", label: "text-lg" }}
+                  labelPlacement="outside"
+                  size="lg"
+                  value={value}
+                  onChange={onChange}
+                />
+              )}
             />
           </div>
 
           <div>
             <h2 className="mb-5">Location</h2>
             <div className="grid gap-5">
-              <Input
-                type="text"
-                placeholder="Enter Street Name"
+              <Controller
+                name="location.street"
+                control={control}
                 defaultValue=""
-                className=""
-                size="lg"
-                {...register("location.street")}
+                render={({ field }) => (
+                  <Input
+                    type="text"
+                    placeholder="Enter Street Name"
+                    size="lg"
+                    {...field}
+                  />
+                )}
               />
-              <Input
-                type="text"
-                placeholder="Enter City"
-                className=""
+              <Controller
+                name="location.city"
+                control={control}
                 defaultValue=""
-                size="lg"
-                {...register("location.city")}
+                render={({ field }) => (
+                  <Input
+                    type="text"
+                    placeholder="Enter City"
+                    size="lg"
+                    {...field}
+                  />
+                )}
               />
-              <Input
-                type="text"
-                placeholder="Enter State/Region"
-                className=""
+              <Controller
+                name="location.state"
+                control={control}
                 defaultValue=""
-                size="lg"
-                {...register("location.state")}
+                render={({ field }) => (
+                  <Input
+                    type="text"
+                    placeholder="Enter State/Region"
+                    size="lg"
+                    {...field}
+                  />
+                )}
               />
-              <Input
-                type="text"
-                placeholder="Enter Zip-Code"
-                className=""
-                size="lg"
+              <Controller
+                name="location.zipcode"
+                control={control}
                 defaultValue=""
-                {...register("location.zipcode")}
+                render={({ field }) => (
+                  <Input
+                    type="text"
+                    placeholder="Enter Zip-Code"
+                    size="lg"
+                    {...field}
+                  />
+                )}
               />
             </div>
           </div>
 
           <div className="lg:flex grid gap-4  ">
-            <Input     
-              label="Beds"
-              labelPlacement="outside"
-              type="text"
-              defaultValue=""
-              size="lg"
-              placeholder="Enter number of beds"
-              className=""
-              {...register("beds")}
+            <Controller
+              name="beds"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  label="Beds"
+                  labelPlacement="outside"
+                  type="text"
+                  defaultValue=""
+                  size="lg"
+                  placeholder="Enter number of beds"
+                  className=""
+                  value={value}
+                  onChange={onChange}
+                />
+              )}
             />
-            <Input
-              label="Baths"
-              labelPlacement="outside"
-              type="text"
-              defaultValue=""
-              size="lg"
-              placeholder="Enter number of baths"
-              className=""
-              {...register("baths")}
+            <Controller
+              name="baths"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  label="Baths"
+                  labelPlacement="outside"
+                  type="text"
+                  defaultValue=""
+                  size="lg"
+                  placeholder="Enter number of baths"
+                  className=""
+                  value={value}
+                  onChange={onChange}
+                />
+              )}
             />
-            <Input
-              label="Square Metre"
-              labelPlacement="outside"
-              type="text"
-              defaultValue=""
-              size="lg"
-              placeholder="Enter area of total floor space"
-              className=""
-              {...register("square_feet")}
+            <Controller
+              name="square_feet"
+              control={control}
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  label="Square Metre"
+                  labelPlacement="outside"
+                  type="text"
+                  defaultValue=""
+                  size="lg"
+                  placeholder="Enter area of total floor space"
+                  className=""
+                  value={value}
+                  onChange={onChange}
+                />
+              )}
             />
           </div>
 
@@ -278,11 +362,11 @@ const EditListForm = () => {
             <Controller
               name="amenities"
               control={control}
-              render={({ field: { onChange, value,  } }) => (
+              render={({ field: { onChange, onBlur, value } }) => (
                 <CheckboxGroup
                   label="Select Amenities"
+                  value={value}
                   onChange={onChange}
-                //   defaultValue={value}
                   orientation="horizontal"
                   classNames={{
                     base: "w-full",
@@ -293,10 +377,9 @@ const EditListForm = () => {
                   {amenities.map((amenity, index) => (
                     <Checkbox
                       key={index}
-                    //   defaultValue=""
+                      onBlur={onBlur}
                       value={amenity.value}
                       className="font-semibold"
-                      
                     >
                       {amenity.label}
                     </Checkbox>
@@ -309,78 +392,108 @@ const EditListForm = () => {
           <div>
             <h2 className="pb-9">Rates (Leave blank if not applicable )</h2>
             <div className="flex ">
-              <Input
-                label="Nightly"
-                type="text"
-                labelPlacement="outside-left"
-                defaultValue=""
-                size="lg"
-                placeholder="Enter amount"
-                {...register("rates.nightly")}
+              <Controller
+                name="rates.nightly"
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <Input
+                    label="Nightly"
+                    type="text"
+                    labelPlacement="outside-left"
+                    defaultValue=""
+                    size="lg"
+                    placeholder="Enter amount"
+                    value={value}
+                    onChange={onChange}
+                  />
+                )}
               />
-              <Input
-                label="Weekly"
-                type="text"
-                labelPlacement="outside-left"
-                defaultValue=""
-                size="lg"
-                placeholder="Enter amount"
-                {...register("rates.weekly")}
+              <Controller
+                name="rates.weekly"
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <Input
+                    label="Weekly"
+                    type="text"
+                    labelPlacement="outside-left"
+                    defaultValue=""
+                    size="lg"
+                    placeholder="Enter amount"
+                    value={value}
+                    onChange={onChange}
+                  />
+                )}
               />
-              <Input
-                label="Monthly"
-                type="text"
-                labelPlacement="outside-left"
-                defaultValue=""
-                size="lg"
-                placeholder="Enter amount"
-                {...register("rates.monthly")}
+              <Controller
+                name="rates.monthly"
+                control={control}
+                render={({ field: { onChange, value } }) => (
+                  <Input
+                    label="Monthly"
+                    type="text"
+                    labelPlacement="outside-left"
+                    defaultValue=""
+                    size="lg"
+                    placeholder="Enter amount"
+                    value={value}
+                    onChange={onChange}
+                  />
+                )}
               />
             </div>
           </div>
 
           <div>
             <h2>Host Details</h2>
-            <Input
-              type="text"
-              defaultValue=""
-              label=""
-              placeholder="Enter Host's Name)"
-              className="lg:max-w-xl"
-              size="lg"
-              radius="sm"
-              {...register("seller_info.name")}
+            <Controller
+              name="seller_info.name"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  type="text"
+                  defaultValue=""
+                  label=""
+                  placeholder="Enter Host's Name)"
+                  className="lg:max-w-xl"
+                  size="lg"
+                  radius="sm"
+                  {...field}
+                />
+              )}
             />
-            <Input
-              type="email"
-              defaultValue=""
-              label=""
-              placeholder="Enter Host's Email)"
-              className="lg:max-w-xl"
-              size="lg"
-              radius="sm"
-              {...register("seller_info.email")}
+            <Controller
+              name="seller_info.email"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  type="text"
+                  defaultValue=""
+                  label=""
+                  placeholder="Enter Host's Email"
+                  className="lg:max-w-xl"
+                  size="lg"
+                  radius="sm"
+                  {...field}
+                />
+              )}
             />
-            <Input
-              type="text"
-              defaultValue=""
-              label=""
-              placeholder="Enter Host's Tel)"
-              className="lg:max-w-xl"
-              size="lg"
-              radius="sm"
-              {...register("seller_info.phone")}
+            <Controller
+              name="seller_info.phone"
+              control={control}
+              render={({ field }) => (
+                <Input
+                  type="text"
+                  defaultValue=""
+                  label=""
+                  placeholder="Enter Host's Tel"
+                  className="lg:max-w-xl"
+                  size="lg"
+                  radius="sm"
+                  {...field}
+                />
+              )}
             />
           </div>
-
-          {/* <div>
-            <input
-              type="file"
-              {...register("images")}
-              multiple
-              accept="image/*"
-            />
-          </div> */}
 
           <Button type="submit">Update Listing</Button>
         </form>

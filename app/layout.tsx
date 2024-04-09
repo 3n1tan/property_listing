@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import clsx from "clsx";
 import { Providers } from "./providers";
 import NavBar from "@/components/NavBar/app";
 import Footer from "@/components/Footer/app";
@@ -25,7 +26,8 @@ export default function RootLayout({
   return (
     <AuthProvider>
       <html lang="en">
-        <body className={inter.className}>
+        <body className={clsx(
+          " min-h-[100lvh] bg-background font-mono antialiased",inter.className)}>
           <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
             <NavBar />
             {children}
