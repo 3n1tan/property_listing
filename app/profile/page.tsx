@@ -110,7 +110,7 @@ const ProfilePage = () => {
                     />
                   </Link>
                   <div>
-                    <h2 className="text-lg font-semibold">{listing.name}</h2>
+                    <h2 className="text-lg font-semibold capitalize">{listing.name}</h2>
                     <p className="text-gray-600">
                       {listing.location.street} {listing.location.city}{" "}
                       {listing.location.state}

@@ -57,7 +57,7 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
           <h1 className="text-default-400 capitalize">{singleList.type}</h1>
         </CardHeader>
         <CardBody className="gap-5 dark:text-black">
-          <p className="lg:text-4xl text-3xl font-semibold tracking-wide">
+          <p className="lg:text-4xl text-2xl font-semibold tracking-wide capitalize">
             {singleList.name}
           </p>
           <p className="flex justify-start gap-4 text-sm items-center">
@@ -69,11 +69,11 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
         <h2 className="bg-green-500 py-3 pl-8 mx-3 mt-4 rounded-t-lg lg:mb-2 mb-8 font-semibold text-xl">
           Rates & Options
         </h2>
-        <div className="lg:flex lg:flex-row lg:justify-around lg:mt-9 lg:mb-9 mb-6 grid gap-y-9">
-          <div className="flex items-center justify-center">
+        <div className="lg:flex lg:flex-row lg:justify-around lg:mt-9 lg:mb-9 mb-6  gap-y-4 grid justify-items-center">
+          <div className="flex items-start justify-center">
             <div>
               {singleList.rates.nightly ? (
-                <div className="flex items-center gap-3">
+                <div className="flex items-center  gap-3">
                   <p className="text-default-500 text-sm lg:text-[1rem]">
                     Nightly
                   </p>
