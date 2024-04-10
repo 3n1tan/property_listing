@@ -68,7 +68,7 @@ export default function Component() {
         <div className="flex items-center lg:ml-0 ml-[3rem]">
           <Link href="/">
             <AcmeIcon />
-            <p className="font-bold text-inherit">3N1T | PROPERTIES </p>
+            <p className="font-bold text-inherit text-xl">3N1T | PROPERTIES </p>
           </Link>
         </div>
       </NavbarBrand>

@@ -92,7 +92,7 @@ const EditListForm = () => {
           `http://localhost:3000/api/listing/${id}`
         );
         const data = response.data;
-        console.log(data);
+        // console.log(data);
         setData(data);
 
         reset({
@@ -132,6 +132,10 @@ const EditListForm = () => {
     fetchListData();
   }, []);
 
+  const cancelOperation = () => {
+    router.push(`/profile`);
+  }
+
   const onSubmit = async (data: FormValues) => {
     const formData = new FormData();
 
@@ -159,12 +163,12 @@ const EditListForm = () => {
     formData.append("seller_info[email]", data.seller_info.email);
     formData.append("seller_info[phone]", data.seller_info.phone);
 
-    console.log(formData.get("name"));
-    console.log(formData.getAll("amenities"));
-    console.log(data.amenities);
+    // console.log(formData.get("name"));
+    // console.log(formData.getAll("amenities"));
+    // console.log(data.amenities);
 
-    console.log(formData);
-    console.log(data); // Make sure form data is constructed correctly
+    // console.log(formData);
+    // console.log(data); // Make sure form data is constructed correctly
 
     try {
       const response = await axios.put(
@@ -237,7 +241,7 @@ const EditListForm = () => {
                   placeholder="Add an optional description of property"
                   minRows={8}
                   className="mt-[3rem]"
-                  classNames={{ base: "max-w-full", label: "text-lg" }}
+                  classNames={{ base: "max-w-full", label: "text-lg font-semibold" }}
                   labelPlacement="outside"
                   size="lg"
                   value={value}
@@ -373,7 +377,7 @@ const EditListForm = () => {
                     base: "w-full",
                     label: "text-lg font-semibold",
                     wrapper:
-                      "grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-2 space-y-1 ",
+                      "grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-2 gap-4 ",
                   }}
                 >
                   {amenities.map((amenity, index) => (
@@ -381,6 +385,7 @@ const EditListForm = () => {
                       key={index}
                       onBlur={onBlur}
                       value={amenity.value}
+                      color="success"
                       className="font-semibold italic"
                     >
                       {amenity.label}
@@ -500,7 +505,10 @@ const EditListForm = () => {
           </div>
 
           <div className="pt-9 max-w-full flex">
-            <Button type="submit" className="flex-grow">Update Listing</Button>
+            <Button className="flex-grow bg-red-500" onClick={cancelOperation}>Cancel Operation</Button>
+          </div>
+          <div className="max-w-full flex">
+            <Button type="submit" className="flex-grow bg-green-400">Update Listing</Button>
           </div>
         </form>
       </div>

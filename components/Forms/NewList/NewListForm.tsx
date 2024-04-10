@@ -136,9 +136,9 @@ const NewListForm = () => {
       <h1 className="text-center lg:text-4xl text-2xl font-semibold lg:mb-6 mb-4">
         Create New Listing
       </h1>
-      <div className="shadow-inherit">
+      <div className="shadow-inherit ">
         <form
-          className="lg:px-9 px-3 pb-9 space-y-5 border mx-auto rounded-md max-w-[70rem]"
+          className="lg:px-9 px-3 pb-9 space-y-5 border mx-auto rounded-md max-w-[70rem] bg-[#DEE4E7] dark:bg-[#37474F]"
           onSubmit={handleSubmit(onSubmit)}
           encType="multipart/form-data"
         >
@@ -177,8 +177,8 @@ const NewListForm = () => {
               placeholder="Add an optional description of property"
               defaultValue=""
               minRows={8}
-              className="mt-[3rem] "
-              classNames={{ base: "max-w-full", label: "text-lg" }}
+              className="mt-[3rem]"
+              classNames={{ base: "max-w-full", label: "text-lg font-semibold" }}
               labelPlacement="outside"
               size="lg"
               {...register("description")}
@@ -269,7 +269,7 @@ const NewListForm = () => {
                     base: "w-full ",
                     label: "text-lg font-semibold",
                     wrapper:
-                      "grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-2 space-y-1  ",
+                      "grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-2 gap-4  ",
                   }}
                 >
                   {amenities.map((amenity, index) => (
@@ -277,7 +277,13 @@ const NewListForm = () => {
                       key={index}
                       defaultValue=""
                       value={amenity.value}
-                      className="font-semibold italic"
+                      color="success"
+                      classNames={{
+                        base: "font-semibold italic font-red-300",
+                        
+                      }}
+                      
+                      // className="font-semibold italic "
                     >
                       {amenity.label}
                     </Checkbox>
@@ -366,7 +372,7 @@ const NewListForm = () => {
           </div>
 
           <div className="pt-9 max-w-full flex">
-            <Button type="submit" className="flex-grow">Submit Listing</Button>
+            <Button type="submit" className="flex-grow bg-green-400">Submit Listing</Button>
           </div>
         </form>
       </div>

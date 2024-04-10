@@ -128,8 +128,8 @@ export const PUT = async (
 
     // Update property in database
     const updatedListing = await Listing.findByIdAndUpdate(id, listingData);
-    console.log(formData.getAll("amenities"));
-    console.log(formData.get("baths"));
+    // console.log(formData.getAll("amenities"));
+    // console.log(formData.get("baths"));
 
     return new Response(JSON.stringify(updatedListing), {
       status: 200,

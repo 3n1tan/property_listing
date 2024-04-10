@@ -46,7 +46,7 @@ const ListMap = ({ singleList }: any) => {
 
         const { lat, lng } = res.results[0].geometry.location;
 
-        console.log(lat, lng);
+        // console.log(lat, lng);
 
         setLat(lat);
         setLng(lng);
@@ -58,7 +58,7 @@ const ListMap = ({ singleList }: any) => {
 
         setLoading(false);
       } catch (error) {
-        console.log(error);
+        // console.log(error);
         setGeocodeError(true);
         setLoading(false);
       }
