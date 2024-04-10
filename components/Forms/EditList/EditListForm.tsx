@@ -192,10 +192,10 @@ const EditListForm = () => {
           onSubmit={handleSubmit(onSubmit)}
           encType="multipart/form-data"
         >
-          <div className="lg:mt-9 lg:mb-[3rem]">
+          <div className="lg:mt-9 mb-[4rem]">
             <Select
               label="Property-Type"
-              className=""
+              className="font-semibold"
               labelPlacement="outside"
               size="lg"
               {...register("type")}
@@ -218,7 +218,7 @@ const EditListForm = () => {
                   label="Listing Name"
                   labelPlacement="outside"
                   placeholder="Enter Listing Name"
-                  className=""
+                  className="text-lg font-semibold"
                   size="lg"
                   value={value}
                   onChange={onChange}
@@ -235,7 +235,8 @@ const EditListForm = () => {
                 <Textarea
                   label="Description"
                   placeholder="Add an optional description of property"
-                  className="lg:mt-[1rem] "
+                  minRows={8}
+                  className="mt-[3rem]"
                   classNames={{ base: "max-w-full", label: "text-lg" }}
                   labelPlacement="outside"
                   size="lg"
@@ -246,8 +247,8 @@ const EditListForm = () => {
             />
           </div>
 
-          <div>
-            <h2 className="mb-5">Location</h2>
+          <div className="pt-9">
+            <h2 className="mb-5 text-lg font-semibold">Location</h2>
             <div className="grid gap-5">
               <Controller
                 name="location.street"
@@ -304,7 +305,7 @@ const EditListForm = () => {
             </div>
           </div>
 
-          <div className="lg:flex grid gap-4  ">
+          <div className="lg:flex grid gap-4 pt-9">
             <Controller
               name="beds"
               control={control}
@@ -316,7 +317,7 @@ const EditListForm = () => {
                   defaultValue=""
                   size="lg"
                   placeholder="Enter number of beds"
-                  className=""
+                  className="font-semibold"
                   value={value}
                   onChange={onChange}
                 />
@@ -333,7 +334,7 @@ const EditListForm = () => {
                   defaultValue=""
                   size="lg"
                   placeholder="Enter number of baths"
-                  className=""
+                  className="font-semibold"
                   value={value}
                   onChange={onChange}
                 />
@@ -350,7 +351,7 @@ const EditListForm = () => {
                   defaultValue=""
                   size="lg"
                   placeholder="Enter area of total floor space"
-                  className=""
+                  className="font-semibold"
                   value={value}
                   onChange={onChange}
                 />
@@ -358,7 +359,7 @@ const EditListForm = () => {
             />
           </div>
 
-          <div>
+          <div className="pt-9">
             <Controller
               name="amenities"
               control={control}
@@ -370,6 +371,7 @@ const EditListForm = () => {
                   orientation="horizontal"
                   classNames={{
                     base: "w-full",
+                    label: "text-lg font-semibold",
                     wrapper:
                       "grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-2 space-y-1 ",
                   }}
@@ -379,7 +381,7 @@ const EditListForm = () => {
                       key={index}
                       onBlur={onBlur}
                       value={amenity.value}
-                      className="font-semibold"
+                      className="font-semibold italic"
                     >
                       {amenity.label}
                     </Checkbox>
@@ -390,8 +392,10 @@ const EditListForm = () => {
           </div>
 
           <div>
-            <h2 className="pb-9">Rates (Leave blank if not applicable )</h2>
-            <div className="flex ">
+            <h2 className="lg:pb-5 pb-3 mt-[4rem] text-lg font-semibold">
+              Rates (Leave blank if not applicable )
+            </h2>
+            <div className="lg:flex grid gap-9 ">
               <Controller
                 name="rates.nightly"
                 control={control}
@@ -443,8 +447,8 @@ const EditListForm = () => {
             </div>
           </div>
 
-          <div>
-            <h2>Host Details</h2>
+          <div className="pt-9 grid gap-5 pb-2">
+            <h2 className="text-lg font-semibold">Host Details</h2>
             <Controller
               name="seller_info.name"
               control={control}
@@ -495,7 +499,9 @@ const EditListForm = () => {
             />
           </div>
 
-          <Button type="submit">Update Listing</Button>
+          <div className="pt-9 max-w-full flex">
+            <Button type="submit" className="flex-grow">Update Listing</Button>
+          </div>
         </form>
       </div>
     </div>

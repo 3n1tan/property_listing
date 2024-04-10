@@ -176,6 +176,7 @@ const NewListForm = () => {
               label="Description"
               placeholder="Add an optional description of property"
               defaultValue=""
+              minRows={8}
               className="mt-[3rem] "
               classNames={{ base: "max-w-full", label: "text-lg" }}
               labelPlacement="outside"
