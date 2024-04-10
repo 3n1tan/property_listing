@@ -29,7 +29,7 @@ const Hero = () => {
               </SelectItem>
             ))}
           </Select>
-          <Button color="primary" className="h-12 bg-blue-500 w-full lg:w-fit">
+          <Button color="primary" className="h-12 w-full lg:w-fit bg-green-600">
             Search
           </Button>
         </div>

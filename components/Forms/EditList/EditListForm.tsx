@@ -182,13 +182,13 @@ const EditListForm = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-center lg:text-4xl text-2xl font-semibold">
+    <div className="lg:mt-9 mt-5">
+      <h1 className="text-center lg:text-4xl text-2xl font-semibold lg:mb-6 mb-4">
         Edit Listing
       </h1>
       <div className="shadow-inherit">
         <form
-          className="lg:px-9 px-3 space-y-5 border mx-auto rounded-md max-w-[70rem]"
+          className="lg:px-9 px-3 pb-9 space-y-5 border mx-auto rounded-md max-w-[70rem]"
           onSubmit={handleSubmit(onSubmit)}
           encType="multipart/form-data"
         >

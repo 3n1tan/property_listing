@@ -104,7 +104,7 @@ const NewListForm = () => {
       formData.append("images", image);
     });
 
-    console.log(formData.getAll("amenities"))
+    console.log(formData.getAll("amenities"));
 
     // console.log(data);
     // console.log(formData);
@@ -132,20 +132,20 @@ const NewListForm = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-center lg:text-4xl text-2xl font-semibold">
+    <div className="lg:mt-9 mt-5">
+      <h1 className="text-center lg:text-4xl text-2xl font-semibold lg:mb-6 mb-4">
         Create New Listing
       </h1>
       <div className="shadow-inherit">
         <form
-          className="lg:px-9 px-3 space-y-5 border mx-auto rounded-md max-w-[70rem]"
+          className="lg:px-9 px-3 pb-9 space-y-5 border mx-auto rounded-md max-w-[70rem]"
           onSubmit={handleSubmit(onSubmit)}
           encType="multipart/form-data"
         >
-          <div className="lg:mt-9 lg:mb-[3rem]">
+          <div className="lg:mt-9 mb-[4rem]">
             <Select
               label="Property-Type"
-              className=""
+              className="font-semibold"
               labelPlacement="outside"
               size="lg"
               {...register("type")}
@@ -158,14 +158,14 @@ const NewListForm = () => {
             </Select>
           </div>
 
-          <div className="lg:mt-[3rem]">
+          <div className="">
             <Input
               type="text"
               defaultValue=""
               label="Listing Name"
               labelPlacement="outside"
               placeholder="Enter Listing Name"
-              className=""
+              className="text-lg font-semibold"
               size="lg"
               {...register("name")}
             />
@@ -176,7 +176,7 @@ const NewListForm = () => {
               label="Description"
               placeholder="Add an optional description of property"
               defaultValue=""
-              className="lg:mt-[1rem] "
+              className="mt-[3rem] "
               classNames={{ base: "max-w-full", label: "text-lg" }}
               labelPlacement="outside"
               size="lg"
@@ -184,8 +184,8 @@ const NewListForm = () => {
             />
           </div>
 
-          <div>
-            <h2 className="mb-5">Location</h2>
+          <div className="pt-9">
+            <h2 className="mb-5 text-lg font-semibold">Location</h2>
             <div className="grid gap-5">
               <Input
                 type="text"
@@ -222,7 +222,7 @@ const NewListForm = () => {
             </div>
           </div>
 
-          <div className="lg:flex grid gap-4  ">
+          <div className="lg:flex grid gap-4 pt-9">
             <Input
               label="Beds"
               labelPlacement="outside"
@@ -230,7 +230,7 @@ const NewListForm = () => {
               defaultValue=""
               size="lg"
               placeholder="Enter number of beds"
-              className=""
+              className="font-semibold"
               {...register("beds")}
             />
             <Input
@@ -240,7 +240,7 @@ const NewListForm = () => {
               defaultValue=""
               size="lg"
               placeholder="Enter number of baths"
-              className=""
+              className="font-semibold"
               {...register("baths")}
             />
             <Input
@@ -250,12 +250,12 @@ const NewListForm = () => {
               defaultValue=""
               size="lg"
               placeholder="Enter area of total floor space"
-              className=""
+              className="font-semibold"
               {...register("square_feet")}
             />
           </div>
 
-          <div>
+          <div className="pt-9">
             <Controller
               name="amenities"
               control={control}
@@ -263,12 +263,12 @@ const NewListForm = () => {
                 <CheckboxGroup
                   label="Select Amenities"
                   onChange={onChange}
-                  // defaultValue={value}
                   orientation="horizontal"
                   classNames={{
-                    base: "w-full",
+                    base: "w-full ",
+                    label: "text-lg font-semibold",
                     wrapper:
-                      "grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-2 space-y-1 ",
+                      "grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-2 space-y-1  ",
                   }}
                 >
                   {amenities.map((amenity, index) => (
@@ -276,7 +276,7 @@ const NewListForm = () => {
                       key={index}
                       defaultValue=""
                       value={amenity.value}
-                      className="font-semibold"
+                      className="font-semibold italic"
                     >
                       {amenity.label}
                     </Checkbox>
@@ -287,8 +287,10 @@ const NewListForm = () => {
           </div>
 
           <div>
-            <h2 className="pb-9">Rates (Leave blank if not applicable )</h2>
-            <div className="flex ">
+            <h2 className="lg:pb-5 pb-3 mt-[4rem] text-lg font-semibold">
+              Rates (Leave blank if not applicable )
+            </h2>
+            <div className="lg:flex grid gap-9 ">
               <Input
                 label="Nightly"
                 type="text"
@@ -312,7 +314,6 @@ const NewListForm = () => {
                 type="text"
                 labelPlacement="outside-left"
                 defaultValue=""
-                
                 size="lg"
                 placeholder="Enter amount"
                 {...register("rates.monthly")}
@@ -320,8 +321,8 @@ const NewListForm = () => {
             </div>
           </div>
 
-          <div>
-            <h2>Host Details</h2>
+          <div className="pt-9 grid gap-5 pb-9">
+            <h2 className="text-lg font-semibold">Host Details</h2>
             <Input
               type="text"
               defaultValue=""
@@ -363,7 +364,9 @@ const NewListForm = () => {
             />
           </div>
 
-          <Button type="submit">Submit Listing</Button>
+          <div className="pt-9 max-w-full flex">
+            <Button type="submit" className="flex-grow">Submit Listing</Button>
+          </div>
         </form>
       </div>
     </div>
