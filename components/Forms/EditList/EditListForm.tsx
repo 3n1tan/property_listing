@@ -7,7 +7,6 @@ import {
   CheckboxGroup,
   Input,
   Textarea,
-  cn,
 } from "@nextui-org/react";
 import React from "react";
 import { useForm, Controller, FieldValue } from "react-hook-form";
@@ -16,7 +15,7 @@ import { useRouter, useParams } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
-import { get } from "http";
+
 
 type FormValues = {
   name: string;
@@ -162,13 +161,6 @@ const EditListForm = () => {
     formData.append("seller_info[name]", data.seller_info.name);
     formData.append("seller_info[email]", data.seller_info.email);
     formData.append("seller_info[phone]", data.seller_info.phone);
-
-    // console.log(formData.get("name"));
-    // console.log(formData.getAll("amenities"));
-    // console.log(data.amenities);
-
-    // console.log(formData);
-    // console.log(data); // Make sure form data is constructed correctly
 
     try {
       const response = await axios.put(

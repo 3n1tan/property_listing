@@ -46,8 +46,6 @@ const ListMap = ({ singleList }: any) => {
 
         const { lat, lng } = res.results[0].geometry.location;
 
-        // console.log(lat, lng);
-
         setLat(lat);
         setLng(lng);
         setViewport({
@@ -58,7 +56,6 @@ const ListMap = ({ singleList }: any) => {
 
         setLoading(false);
       } catch (error) {
-        // console.log(error);
         setGeocodeError(true);
         setLoading(false);
       }
@@ -85,7 +82,6 @@ const ListMap = ({ singleList }: any) => {
             latitude: lat,
             zoom: 14,
           }}
-          // style={{ width: '100%', height: 800 }}
           mapStyle="mapbox://styles/mapbox/streets-v9"
         >
           {lat !== undefined && lng !== undefined && (

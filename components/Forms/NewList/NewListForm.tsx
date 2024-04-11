@@ -106,9 +106,6 @@ const NewListForm = () => {
 
     console.log(formData.getAll("amenities"));
 
-    // console.log(data);
-    // console.log(formData);
-
     try {
       const response = await axios.post(
         "http://localhost:3000/api/listing",
@@ -119,7 +116,6 @@ const NewListForm = () => {
         throw new Error("Network response was not ok");
       }
 
-      // const res = response.data;
       toast.success("Listing created successfully");
       // Perform further actions with the response
       router.push(`/listing`);
