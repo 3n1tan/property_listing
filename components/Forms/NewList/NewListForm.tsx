@@ -11,7 +11,7 @@ import {
 } from "@nextui-org/react";
 import React from "react";
 import { useForm, Controller, FieldValue } from "react-hook-form";
-import { amenities, apartments } from "@/components/UI/HeroBanner/data";
+import { amenities, apartments } from "@/components/Forms/SearchList/data";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-toastify";

@@ -1,7 +1,5 @@
-"use client";
 import React from "react";
-import { Button, Input, Select, SelectItem } from "@nextui-org/react";
-import { apartments } from "./data";
+import SearchList from "@/components/Forms/SearchList/SearchList";
 
 const Hero = () => {
   return (
@@ -13,26 +11,7 @@ const Hero = () => {
         <p className="text-center tracking-widest lg:text-[16px] text-sm pb-9">
           Explore the ideal property tailored to your needs.
         </p>
-        <div className="flex flex-wrap lg:flex-nowrap gap-6">
-          <Input
-            type="text"
-            label=""
-            placeholder="Enter Location (City, State, Zip, etc)"
-            className="lg:max-w-xl"
-            size="lg"
-            radius="sm"
-          />
-          <Select label="Property-Type" className="" size="sm">
-            {apartments.map((apartment) => (
-              <SelectItem key={apartment.value} value={apartment.value}>
-                {apartment.label}
-              </SelectItem>
-            ))}
-          </Select>
-          <Button color="primary" className="h-12 w-full lg:w-fit bg-green-600">
-            Search
-          </Button>
-        </div>
+        <SearchList />
       </div>
     </div>
   );
