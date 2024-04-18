@@ -64,7 +64,7 @@ const ListingsPage = async () => {
         {listings.map((listing: any) => (
           <ListCard key={listing._id} listing={listing} />
         ))}
-      </div>
+      </div>  
     </div>
   );
 };

@@ -19,6 +19,7 @@ import CheckIcon from "@mui/icons-material/Check";
 import { List } from "@mui/material";
 import ListingImages from "@/components/UI/Listings/ListingImages";
 import ListMap from "@/components/UI/ListMap/ListMap";
+import SocialShareIcon from "@/components/UI/SocialShareButton/Share";
 
 interface SingleListProps {
   params: {
@@ -27,9 +28,12 @@ interface SingleListProps {
 }
 
 async function fetchListing(params: { id: string }) {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}/listing/${params.id}`, {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_DOMAIN}/listing/${params.id}`,
+    {
+      cache: "no-store",
+    }
+  );
 
   if (!res.ok) {
     console.error("failed, error ", res.status);
@@ -45,11 +49,16 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
   return (
     <div className="w-full min-h-[100lvh] lg:max-w-[90rem] lg:mx-auto lg:px-9 px-4 mx-auto">
       <SingleListCard image={singleList.images[0]} />
-      <div className="mt-6">
-        <Link href={`/listing/`}>
-          <ArrowBackIcon className="text-3xl mr-3" />
-          Back to Listing
-        </Link>
+      <div className="lg:flex lg:justify-between grid">
+        <div className="lg:mt-[4rem] mt-9">
+          <Link href={`/listing/`}>
+            <ArrowBackIcon className="text-3xl mr-3" />
+            <span className="lg:text-2xl">Back to Listing</span>
+          </Link>
+        </div>
+        <div className="mt-6">
+          <SocialShareIcon listing={singleList} />
+        </div>
       </div>
 
       <Card className="mt-9 bg-[#FBFFF4]">
@@ -161,7 +170,8 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
             {Array.isArray(singleList.amenities) &&
               singleList.amenities.map((amenity: string[], index: number) => (
                 <li key={index} className="inline-block font-semibold">
-                  <CheckIcon className="text-green-700" /> <span className="mx-auto">{amenity}</span>
+                  <CheckIcon className="text-green-700" />{" "}
+                  <span className="mx-auto">{amenity}</span>
                 </li>
               ))}
           </ul>
