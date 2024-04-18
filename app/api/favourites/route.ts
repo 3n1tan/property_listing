@@ -24,7 +24,8 @@ export const POST = async (Request: NextRequest, Response: NextResponse) => {
 
     const { userId } = sessionUser;
 
-    const user = await User.findOne({ _id: userId });
+    // const user = await User.findOne({ _id: userId });
+    const user = await User.findById(userId);
 
     let isFavourite = user.favourites.includes(listingId);
 
@@ -32,7 +33,7 @@ export const POST = async (Request: NextRequest, Response: NextResponse) => {
 
     if (isFavourite) {
       user.favourites.pull(listingId);
-      text = "Listing already in favourites";
+      text = "Listing removed from favourites";
       isFavourite = false;
     } else {
       user.favourites.push(listingId);

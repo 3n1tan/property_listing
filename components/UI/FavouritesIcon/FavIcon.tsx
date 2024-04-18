@@ -1,13 +1,42 @@
 'use client';
-import React from 'react'
+import React, {useState} from 'react'
 import { Button } from '@nextui-org/react'
 import {Icon} from "@iconify/react";
 import { cn } from '@/components/NavBar/cn';
 import { useSession } from 'next-auth/react';
 import { toast } from 'react-toastify';
+
+
 const FavIcon = ({listing}:any) => {
 
-  const [isLiked, setIsLiked] = React.useState(false);
+  const [isLiked, setIsLiked] = useState(false);
+  const { data: session } = useSession();
+  const userId = session?.user?.id;
+
+  const handleFav = async () => {
+    if (!userId) {
+      toast.error("Please login to add to favourites");
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/favourites", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ listingId: listing._id }),
+      });
+      if (res.ok) {
+        // const data = await res.json();
+        setIsLiked(!isLiked);
+        toast.success("Added to favourites");
+      }
+    } catch (error) {
+      toast.error("Error adding listing to favourites");
+    }
+
+  };
   return (
     <Button
     isIconOnly
@@ -15,7 +44,9 @@ const FavIcon = ({listing}:any) => {
     radius="full"
     size="sm"
     variant="flat"
-    onPress={() => setIsLiked(!isLiked)}
+    // onPress={() => setIsLiked(!isLiked)}
+    onPress={handleFav}
+    // onClick={handleFav}
   >
     <Icon
     // className="text-default-900/50 text-danger-400"
