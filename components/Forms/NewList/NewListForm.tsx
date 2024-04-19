@@ -104,8 +104,6 @@ const NewListForm = () => {
       formData.append("images", image);
     });
 
-    console.log(formData.getAll("amenities"));
-
     try {
       const response = await axios.post(
         "http://localhost:3000/api/listing",

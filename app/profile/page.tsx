@@ -12,7 +12,7 @@ const ProfilePage = () => {
   const profileImage = session?.user?.image;
   const profileName = session?.user?.name;
   const profileEmail = session?.user?.email;
-  // console.log(session);
+
 
   const [userListings, setUserListings] = useState([]);
   const [loading, setLoading] = useState(true);

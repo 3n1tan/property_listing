@@ -24,7 +24,6 @@ const SearchList = () => {
   const { control, handleSubmit, register, reset } = form;
 
     const onSubmit = async (data: FormValues) => {
-        console.log(data);
 
         if (data.location === "" && data.listType === "all") {
             router.push("/listing");
@@ -64,13 +63,6 @@ const SearchList = () => {
               </SelectItem>
             ))}
           </Select>
-          {/* <Select label="Property-Type" className="" size="sm" {...register("listType")}>
-            {apartments.map((apartment) => (
-              <SelectItem key={apartment.value} value={apartment.value}>
-                {apartment.label}
-              </SelectItem>
-            ))}
-          </Select> */}
           <Button color="primary" className="h-12 w-full lg:w-fit bg-green-600" type="submit">
             Search
           </Button>

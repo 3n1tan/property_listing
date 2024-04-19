@@ -10,7 +10,7 @@ import {
 } from "@nextui-org/react";
 import React from "react";
 import { useForm, Controller, FieldValue } from "react-hook-form";
-import { amenities, apartments } from "@/components/UI/HeroBanner/data";
+import { amenities, apartments } from "@/components/Forms/SearchList/data";
 import { useRouter, useParams } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -91,7 +91,6 @@ const EditListForm = () => {
           `http://localhost:3000/api/listing/${id}`
         );
         const data = response.data;
-        // console.log(data);
         setData(data);
 
         reset({

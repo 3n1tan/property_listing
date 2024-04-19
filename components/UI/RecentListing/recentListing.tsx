@@ -21,7 +21,7 @@ const RecentListing = async () => {
     <section className="max-w-full mx-auto px-9 lg:mt-[9rem] mt-[4rem] ml-[-10px] lg:ml-0">
       <h1 className="lg:text-5xl text-2xl text-center">Latest Listings</h1>
 
-      <div className="lg:flex grid lg:justify-around gap-y-9 lg:mt-[4rem] mt-7 ">
+      <div className="xl:grid-cols-3 lg:grid-cols-2 grid gap-y-9 lg:ml-[4rem] lg:mt-[4rem] mt-7 ">
         {recentListings.map((listing: any) => (
           <ListCard key={listing._id} listing={listing} />
         ))}
