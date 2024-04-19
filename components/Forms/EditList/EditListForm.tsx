@@ -88,7 +88,7 @@ const EditListForm = () => {
     const fetchListData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/listing/${id}`
+          `${process.env.NEXT_PUBLIC_DOMAIN}/api/listing/${id}`
         );
         const data = response.data;
         setData(data);
@@ -163,7 +163,7 @@ const EditListForm = () => {
 
     try {
       const response = await axios.put(
-        `http://localhost:3000/api/listing/${id}`,
+        `${process.env.NEXT_PUBLIC_DOMAIN}/api/listing/${id}`,
         formData
       );
       if (response.status === 200) {

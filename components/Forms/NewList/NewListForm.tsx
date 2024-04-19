@@ -106,7 +106,7 @@ const NewListForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/listing",
+        `${process.env.NEXT_PUBLIC_DOMAIN}/api/listing`,
         formData
       );
 
