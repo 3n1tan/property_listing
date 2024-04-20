@@ -20,6 +20,7 @@ import { List } from "@mui/material";
 import ListingImages from "@/components/UI/Listings/ListingImages";
 import ListMap from "@/components/UI/ListMap/ListMap";
 import SocialShareIcon from "@/components/UI/SocialShareButton/Share";
+import MessageForm from "@/components/Forms/MessageForm/MessageForm";
 
 interface SingleListProps {
   params: {
@@ -193,6 +194,9 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
           <ListMap singleList={singleList} />
         </CardBody>
       </Card>
+      <div>
+        <MessageForm />
+      </div>
     </div>
   );
 };
