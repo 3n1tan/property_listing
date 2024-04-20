@@ -56,19 +56,20 @@ const MessageForm = ({ listing }: any) => {
       toast.error("Error sending form");
     } finally {
       reset();
+      router.refresh(); 
     }
   };
 
   return (
     <section>
       <div>
-        <h1>Send Message To Listing Manager</h1>
+        <h1 className="text-center lg:text-2xl text-lg mb-[4rem]">Send Message To Listing Manager</h1>
         <form
           action=""
           onSubmit={handleSubmit(onSubmit)}
-          encType="application/json"
+          // encType="application/json"
         >
-          <div>
+          <div className="flex flex-col gap-10">
             <div className="">
               <Input
                 type="text"

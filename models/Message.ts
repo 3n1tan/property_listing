@@ -12,9 +12,9 @@ const MessageSchema = new Schema(
       ref: "User",
       required: true,
     },
-    property: {
+    listing: {
       type: Schema.Types.ObjectId,
-      ref: "Property",
+      ref: "Listing",
       required: true,
     },
     name: {
@@ -28,7 +28,7 @@ const MessageSchema = new Schema(
     phone: {
       type: String,
     },
-    body: {
+    message: {
       type: String,
     },
     read: {
