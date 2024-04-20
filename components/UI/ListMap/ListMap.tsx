@@ -73,7 +73,7 @@ const ListMap = ({ singleList }: any) => {
 
   return (
     !loading && (
-      <section className="w-full lg:h-[900px] h-[400px] my-3">
+      <section className="w-full xl:h-[50rem] h-[400px] my-3">
         <Map
           mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_TOKEN}
           mapLib={import("mapbox-gl")}

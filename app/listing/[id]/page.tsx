@@ -156,7 +156,7 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
           </div>
         </CardBody>
         <CardFooter className="flex justify-center tracking-wide lg:mt-[1rem] mb-8">
-          <p className="text-sm text-center">{singleList.description}</p>
+          <p className="text-md italic text-center xl:w-[60rem] lg:w-[40rem] leading-loose">{singleList.description}</p>
         </CardFooter>
       </Card>
       <div className="lg:mt-8 lg:mb-8 mt-4 mb-4">
@@ -195,7 +195,7 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
         </CardBody>
       </Card>
       <div>
-        <MessageForm />
+        {/* <MessageForm /> */}
       </div>
     </div>
   );
