@@ -64,7 +64,7 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
 
       <Card className="mt-9 bg-[#FBFFF4]">
         <CardHeader className="grid gap-4">
-          <h1 className="text-default-400 capitalize">{singleList.type}</h1>
+          <h1 className="text-default-400 capitalize lg:text-xl italic">Apartment Type: {singleList.type}</h1>
         </CardHeader>
         <CardBody className="gap-5 dark:text-black">
           <p className="lg:text-4xl text-2xl font-semibold tracking-wide capitalize">
@@ -200,7 +200,6 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
       <Card className="lg:p-8 p-2">
         <CardBody>
         <MessageForm listing={singleList} />
-
         </CardBody>
       </Card>
     </div>

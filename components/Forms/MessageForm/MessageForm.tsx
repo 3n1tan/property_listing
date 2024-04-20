@@ -4,6 +4,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { useSession } from "next-auth/react";
+import { Icon } from "@iconify/react";
 
 type FormValues = {
   name: string;
@@ -14,7 +16,10 @@ type FormValues = {
   listing: any;
 };
 
+
+
 const MessageForm = ({ listing }: any) => {
+  const { data: session } = useSession();
   const form = useForm<FormValues>({
     defaultValues: {
       name: "",
@@ -64,7 +69,8 @@ const MessageForm = ({ listing }: any) => {
     <section>
       <div>
         <h1 className="text-center lg:text-2xl text-lg mb-[4rem]">Send Message To Listing Manager</h1>
-        <form
+        { session ? (
+          <form
           action=""
           onSubmit={handleSubmit(onSubmit)}
           // encType="application/json"
@@ -74,7 +80,7 @@ const MessageForm = ({ listing }: any) => {
               <Input
                 type="text"
                 defaultValue=""
-                label="Name"
+                label="Name:"
                 labelPlacement="outside"
                 placeholder="Enter Your Name"
                 className="text-lg font-semibold"
@@ -87,7 +93,7 @@ const MessageForm = ({ listing }: any) => {
               <Input
                 type="email"
                 defaultValue=""
-                label="Email Address"
+                label="Email Address:"
                 labelPlacement="outside"
                 placeholder="Enter Your Email Address"
                 className="text-lg font-semibold"
@@ -100,7 +106,7 @@ const MessageForm = ({ listing }: any) => {
               <Input
                 type="text"
                 defaultValue=""
-                label="Tel Phone"
+                label="Tel Phone:"
                 labelPlacement="outside"
                 placeholder="Enter Your Phone Number"
                 className="text-lg font-semibold"
@@ -110,7 +116,7 @@ const MessageForm = ({ listing }: any) => {
             </div>
             <div>
               <Textarea
-                label="Message"
+                label="Message:"
                 placeholder="Send a message to the listing manager here."
                 defaultValue=""
                 minRows={8}
@@ -127,12 +133,18 @@ const MessageForm = ({ listing }: any) => {
             </div>
 
             <div className="pt-9 max-w-full flex">
-              <Button type="submit" className="flex-grow bg-green-400">
+              <Button type="submit" className="flex-grow bg-green-400 tracking-widest lg:text-lg">
+              <Icon icon="emojione-v1:flying-envelope" className="text-[4rem]" />
                 Send Message
               </Button>
             </div>
           </div>
         </form>
+        ) : (
+          <p className="text-center text-red-400 text-lg"> You must be logged in to send message!!!</p>
+        )}
+        
+        
       </div>
     </section>
   );

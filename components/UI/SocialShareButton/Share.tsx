@@ -17,7 +17,7 @@ const SocialShareIcon = ({listing}:any) => {
 
   return (
     <>
-    <h3 className='text-xl font-bold text-center pt-2'>
+    <h3 className='text-xl font-bold text-center pt-2 pb-5'>
       Share This Listing:
     </h3>
     <div className='flex lg:gap-5 gap-3 justify-center pb-5'>

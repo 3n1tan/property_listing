@@ -16,6 +16,7 @@ import { useRouter, useParams } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useState, useEffect } from "react";
+import { Icon } from "@iconify/react";
 
 
 type FormValues = {
@@ -499,10 +500,10 @@ const EditListForm = () => {
           </div>
 
           <div className="pt-9 max-w-full flex">
-            <Button className="flex-grow bg-red-500" onClick={cancelOperation}>Cancel Operation</Button>
+            <Button className="flex-grow bg-red-500" onClick={cancelOperation}> <Icon icon="ic:baseline-update-disabled" className="text-lg"/>Cancel Operation</Button>
           </div>
           <div className="max-w-full flex">
-            <Button type="submit" className="flex-grow bg-green-400">Update Listing</Button>
+            <Button type="submit" className="flex-grow bg-green-400"> <Icon icon="grommet-icons:update" />Update Listing</Button>
           </div>
         </form>
       </div>

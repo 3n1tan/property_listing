@@ -6,6 +6,8 @@ import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { Button, Spinner } from "@nextui-org/react";
 import {toast } from 'react-toastify';
+import Icon from "@iconify/react";
+import { anonymPic } from "@/public/assets";
 
 const ProfilePage = () => {
   const { data: session } = useSession();
@@ -70,9 +72,10 @@ const ProfilePage = () => {
             <div className="w-24 h-24 rounded-full overflow-hidden">
               <Image
                 src={
-                  profileImage ||
-                  // "https://i.pravatar.cc/150?u=a04258114e29526708c"
-                  "https://www.vectorstock.com/royalty-free-vector/male-avatar-profile-picture-vector-10211761"
+                  profileImage 
+                  // anonymPic
+                  ||
+                  anonymPic
                 }
                 alt="profile_image"
                 width={200}
@@ -120,7 +123,8 @@ const ProfilePage = () => {
                     <Link href={`/listing/${listing._id}/edit`}>
                       <Button className="bg-green-400">Edit</Button>
                     </Link>
-                    <Button className="bg-red-500 text-white" onClick={()=> handleDeleteListing(listing._id)}>Delete</Button>
+                    <Button className="bg-red-500 text-white" onClick={()=> handleDeleteListing(listing._id)}>
+                    Delete</Button>
                   </div>
                 </div>
               ))}

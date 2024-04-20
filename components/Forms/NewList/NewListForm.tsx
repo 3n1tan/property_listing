@@ -15,6 +15,7 @@ import { amenities, apartments } from "@/components/Forms/SearchList/data";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { Icon } from "@iconify/react";
 
 type FormValues = {
   name: string;
@@ -366,7 +367,7 @@ const NewListForm = () => {
           </div>
 
           <div className="pt-9 max-w-full flex">
-            <Button type="submit" className="flex-grow bg-green-400">Submit Listing</Button>
+            <Button type="submit" className="flex-grow bg-green-400 tracking-widest lg:text-lg"> <Icon icon="fa:send" />Submit Listing</Button>
           </div>
         </form>
       </div>
