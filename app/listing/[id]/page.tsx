@@ -195,7 +195,7 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
         </CardBody>
       </Card>
       <div>
-        {/* <MessageForm /> */}
+        <MessageForm listing={singleList} />
       </div>
     </div>
   );
