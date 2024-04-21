@@ -126,9 +126,9 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
           </div>
         </div>
       </Card>
-      <div className="lg:mt-[5rem] lg:mb-3 mt-4 mb-4 flex items-center ">
+      <div className="lg:mt-[5rem] lg:mb-[2rem] mt-[3rem] mb-4 flex items-center ">
         <hr className="w-1/2 mr-6" />
-        <h2 className="font-semibold lg:text-2xl min-w-fit text-center">
+        <h2 className="font-semibold text-2xl min-w-fit text-center">
           Description & Details
         </h2>
         <hr className="w-1/2 ml-6" />
@@ -162,9 +162,9 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
           </p>
         </CardFooter>
       </Card>
-      <div className="lg:mt-[5rem] lg:mb-3 mt-4 mb-4 flex items-center ">
+      <div className="lg:mt-[5rem] lg:mb-[2rem] mt-[3rem] mb-4 flex items-center ">
         <hr className="w-1/2 mr-6" />
-        <h2 className="font-semibold lg:text-2xl min-w-fit text-center">
+        <h2 className="font-semibold text-2xl min-w-fit text-center">
           Amenities
         </h2>
         <hr className="w-1/2 ml-6" />
@@ -182,9 +182,9 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
           </ul>
         </CardBody>
       </Card>
-      <div className="lg:mt-[5rem] lg:mb-3 mt-4 mb-4 flex items-center ">
+      <div className="lg:mt-[5rem] lg:mb-[2rem] mt-[3rem] mb-4 flex items-center ">
         <hr className="w-1/2 mr-6" />
-        <h2 className="font-semibold lg:text-2xl min-w-fit text-center">
+        <h2 className="font-semibold text-2xl min-w-fit text-center">
           Gallery
         </h2>
         <hr className="w-1/2 ml-6" />
@@ -194,9 +194,9 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
           <ListingImages images={singleList.images} />
         </CardBody>
       </Card>
-      <div className="lg:mt-[5rem] lg:mb-3 mt-4 mb-4 flex items-center ">
+      <div className="lg:mt-[5rem] lg:mb-[2rem] mt-[3rem] mb-4 flex items-center ">
         <hr className="w-1/2 mr-6" />
-        <h2 className="font-semibold lg:text-2xl min-w-fit text-center">
+        <h2 className="font-semibold text-2xl min-w-fit text-center">
           Map Location
         </h2>
         <hr className="w-1/2 ml-6" />
@@ -206,9 +206,9 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
           <ListMap singleList={singleList} />
         </CardBody>
       </Card>
-      <div className="lg:mt-[5rem] lg:mb-3 mt-4 mb-4 flex items-center ">
+      <div className="lg:mt-[5rem] lg:mb-[2rem] mt-[3rem] mb-4 flex items-center ">
         <hr className="w-1/2 mr-6" />
-        <h2 className="font-semibold lg:text-2xl min-w-fit text-center">
+        <h2 className="font-semibold text-2xl min-w-fit text-center">
           Contact Form
         </h2>
         <hr className="w-1/2 ml-6" />

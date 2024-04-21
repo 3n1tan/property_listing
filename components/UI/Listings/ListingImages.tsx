@@ -15,7 +15,8 @@ const ListingImages: React.FC<ListingImagesProps> = ({ images }) => {
             alt="listing image"
             width={800}
             height={500}
-            layout="responsive"
+            layout="responsive"  
+            // fill
             className="object-cover h-[400px] mx-auto rounded-xl"
             priority={true}
           />
