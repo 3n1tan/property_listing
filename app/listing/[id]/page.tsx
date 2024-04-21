@@ -3,10 +3,8 @@ import SingleListCard from "@/components/UI/ListCard/singleListCard";
 import {
   Card,
   CardHeader,
-  Divider,
   CardBody,
   CardFooter,
-  Button,
 } from "@nextui-org/react";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import ClearIcon from "@mui/icons-material/Clear";
@@ -64,7 +62,9 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
 
       <Card className="mt-9 bg-[#FBFFF4]">
         <CardHeader className="grid gap-4">
-          <h1 className="text-default-400 capitalize lg:text-xl italic">Apartment Type: {singleList.type}</h1>
+          <h1 className="text-default-400 capitalize lg:text-xl italic">
+            Apartment Type: {singleList.type}
+          </h1>
         </CardHeader>
         <CardBody className="gap-5 dark:text-black">
           <p className="lg:text-4xl text-2xl font-semibold tracking-wide capitalize">
@@ -126,13 +126,14 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
           </div>
         </div>
       </Card>
-      <div className="lg:mt-8 lg:mb-8 mt-4 mb-4">
-        <Divider />
+      <div className="lg:mt-[5rem] lg:mb-3 mt-4 mb-4 flex items-center ">
+        <hr className="w-1/2 mr-6" />
+        <h2 className="font-semibold lg:text-2xl min-w-fit text-center">
+          Description & Details
+        </h2>
+        <hr className="w-1/2 ml-6" />
       </div>
       <Card className="bg-[#FBFFF4] dark:text-black">
-        <CardHeader>
-          <h2 className="font-semibold text-xl">Description & Details</h2>
-        </CardHeader>
         <CardBody>
           <div className="flex justify-center mt-4  gap-5 text-blue-500">
             <p>
@@ -156,16 +157,19 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
           </div>
         </CardBody>
         <CardFooter className="flex justify-center tracking-wide lg:mt-[1rem] mb-8">
-          <p className="text-md italic text-center xl:w-[60rem] lg:w-[40rem] lg:leading-loose">{singleList.description}</p>
+          <p className="text-md italic text-center xl:w-[60rem] lg:w-[40rem] lg:leading-loose">
+            {singleList.description}
+          </p>
         </CardFooter>
       </Card>
-      <div className="lg:mt-8 lg:mb-8 mt-4 mb-4">
-        <Divider />
+      <div className="lg:mt-[5rem] lg:mb-3 mt-4 mb-4 flex items-center ">
+        <hr className="w-1/2 mr-6" />
+        <h2 className="font-semibold lg:text-2xl min-w-fit text-center">
+          Amenities
+        </h2>
+        <hr className="w-1/2 ml-6" />
       </div>
       <Card className="bg-[#FBFFF4] dark:text-black pb-9">
-        <CardHeader>
-          <h2 className="font-semibold text-xl">Amenities</h2>
-        </CardHeader>
         <CardBody>
           <ul className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 list-none space-y-1">
             {Array.isArray(singleList.amenities) &&
@@ -178,28 +182,40 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
           </ul>
         </CardBody>
       </Card>
-      <div className="lg:mt-8 lg:mb-8 mt-4 mb-4">
-        <Divider />
+      <div className="lg:mt-[5rem] lg:mb-3 mt-4 mb-4 flex items-center ">
+        <hr className="w-1/2 mr-6" />
+        <h2 className="font-semibold lg:text-2xl min-w-fit text-center">
+          Gallery
+        </h2>
+        <hr className="w-1/2 ml-6" />
       </div>
       <Card className="bg-[#FBFFF4] pb-9">
         <CardBody>
           <ListingImages images={singleList.images} />
         </CardBody>
       </Card>
-      <div className="lg:mt-8 lg:mb-8 mt-4 mb-4">
-        <Divider />
+      <div className="lg:mt-[5rem] lg:mb-3 mt-4 mb-4 flex items-center ">
+        <hr className="w-1/2 mr-6" />
+        <h2 className="font-semibold lg:text-2xl min-w-fit text-center">
+          Map Location
+        </h2>
+        <hr className="w-1/2 ml-6" />
       </div>
       <Card className="bg-[#FBFFF4] pb-9">
         <CardBody>
           <ListMap singleList={singleList} />
         </CardBody>
       </Card>
-      <div className="lg:mt-8 lg:mb-8 mt-4 mb-4">
-        <Divider />
+      <div className="lg:mt-[5rem] lg:mb-3 mt-4 mb-4 flex items-center ">
+        <hr className="w-1/2 mr-6" />
+        <h2 className="font-semibold lg:text-2xl min-w-fit text-center">
+          Contact Form
+        </h2>
+        <hr className="w-1/2 ml-6" />
       </div>
       <Card className="lg:p-8 p-2">
         <CardBody>
-        <MessageForm listing={singleList} />
+          <MessageForm listing={singleList} />
         </CardBody>
       </Card>
     </div>
