@@ -52,7 +52,9 @@ const footerNavigation = {
     {
       name: "Twitter",
       href: "#",
-      icon: (props: SocialIconProps) => <Icon {...props} icon="fontisto:twitter" />,
+      icon: (props: SocialIconProps) => 
+        <Icon icon="ri:twitter-x-line" />
+      // <Icon {...props} icon="fontisto:twitter" />,
     },
     {
       name: "GitHub",
