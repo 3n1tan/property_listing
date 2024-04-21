@@ -11,7 +11,8 @@ const SingleListCard = ({image}: any) => {
           width={0}
           height={0}
           sizes="100vw"
-          className="object-cover w-full lg:h-[400px] rounded-t-xl"        
+          className="object-cover w-full lg:h-[400px] rounded-t-xl" 
+          priority={true}     
         />
       </div>
     </div>

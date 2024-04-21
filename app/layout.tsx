@@ -27,7 +27,7 @@ export default function RootLayout({
     <AuthProvider>
       <html lang="en">
         <body className={clsx(
-          " min-h-[100lvh] bg-background font-mono antialiased",inter.className)}>
+          "min-h-[100lvh] bg-background font-mono antialiased",inter.className)}>
           <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
             <NavBar />
             {children}

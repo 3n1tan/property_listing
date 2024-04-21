@@ -14,7 +14,6 @@ import BedOutlinedIcon from "@mui/icons-material/BedOutlined";
 import BathtubOutlinedIcon from "@mui/icons-material/BathtubOutlined";
 import SpaceDashboardOutlinedIcon from "@mui/icons-material/SpaceDashboardOutlined";
 import CheckIcon from "@mui/icons-material/Check";
-import { List } from "@mui/material";
 import ListingImages from "@/components/UI/Listings/ListingImages";
 import ListMap from "@/components/UI/ListMap/ListMap";
 import SocialShareIcon from "@/components/UI/SocialShareButton/Share";

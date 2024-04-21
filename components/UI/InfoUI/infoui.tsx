@@ -3,8 +3,7 @@ import InfoBox from "../InfoBox/infobox";
 
 const InfoUI = () => {
   return (
-    <div>
-      <div className="xl:mt-9 mt-5 lg:flex gap-6 lg:max-w-[85rem] xl:mx-auto grid mx-5">
+      <div className="xl:mt-9 mt-5 lg:flex gap-9 lg:max-w-fit xl:mx-auto grid mx-1">
         <InfoBox
             title="For Rents" 
             description="Discover your ideal rental properties. Save listings and get in touch with property owners."
@@ -19,9 +18,7 @@ const InfoUI = () => {
             link="/listing/create"
             backgroundColor="bg-green-100"
         />
-
       </div>
-    </div>
   );
 };
 

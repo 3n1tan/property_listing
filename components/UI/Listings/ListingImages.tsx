@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+// import { Image } from "@nextui-org/react";
 
 interface ListingImagesProps {
   images: string[];
@@ -16,7 +17,6 @@ const ListingImages: React.FC<ListingImagesProps> = ({ images }) => {
             width={800}
             height={500}
             layout="responsive"  
-            // fill
             className="object-cover h-[400px] mx-auto rounded-xl"
             priority={true}
           />
@@ -37,7 +37,8 @@ const ListingImages: React.FC<ListingImagesProps> = ({ images }) => {
                   width={800}
                   height={500}
                   layout="responsive"
-                  className="object-cover h-[400px] mx-auto rounded-xl"
+                  className="object-cover h-[500px] mx-auto rounded-xl"
+                  // removeWrapper={false}
                   priority={true}
                 />
               </div>
