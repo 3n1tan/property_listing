@@ -4,10 +4,13 @@ import React, {useState, useEffect} from "react";
 import { toast } from "react-toastify";
 import DeleteIcon from '@mui/icons-material/Delete';
 import MarkAsUnreadIcon from '@mui/icons-material/MarkAsUnread';
+import { useGlobal } from "@/context/GlobalContext";
 
 const MessageCard = ({ message }: any) => {
     const [isRead, setIsRead] = useState(message.read);
     const [isDeleted, setIsDeleted] = useState(false);
+
+    const { setCount } = useGlobal();
 
     const handleReadClick = async () => {
         try {
@@ -18,6 +21,7 @@ const MessageCard = ({ message }: any) => {
             if(response.status === 200) {
                 const { read } = await response.json();
                 setIsRead(read);
+                setCount((prev: number) => read ? prev - 1 : prev + 1);
                 if(read) {
                     toast.success('Message marked as read');               
                 }
@@ -32,6 +36,10 @@ const MessageCard = ({ message }: any) => {
     }
 
     const handleDeleteClick = async () => { 
+      const confirmed = window.confirm(
+        "Are you sure you want to delete this message?"
+      );
+      if (!confirmed) return;
         try {
             const response = await fetch(`/api/messages/${message._id}`, {
                 method: 'DELETE',
@@ -52,7 +60,7 @@ const MessageCard = ({ message }: any) => {
     }
   return (
     <>
-      <Card className="lg:mt-9 max-w-[50rem] mx-auto">
+      <Card className="lg:mt-9 lg:max-w-[50rem] max-w-fit mx-auto">
         <CardHeader>
             {!isRead && (
                 <div className="absolute top-2 right-2 bg-yellow-400 text-white px-2 py-1 rounded-md">New Message</div>

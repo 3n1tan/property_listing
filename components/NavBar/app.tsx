@@ -30,6 +30,10 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import NotificationsCard from "./notifications-card";
 import { ThemeSwitcher } from "../DarkMode/switch_theme";
 import Image from "next/image";
+import { useGlobal } from "@/context/GlobalContext";
+
+
+
 
 export default function Component() {
   const { status, data: session } = useSession();
@@ -50,7 +54,7 @@ export default function Component() {
     setAuthProviders();
   }, []);
 
-  const [count, setCount] = useState(0);
+  const { count, setCount } = useGlobal();
 
   useEffect(() => {
     const fetchUnreadMessagesCount = async () => {
