@@ -20,7 +20,6 @@ const Messages = () => {
                 const response = await fetch('/api/messages');
                 if(response.ok) {
                     const data = await response.json();
-                    // console.log(data);
                     setMessages(data);
                 }
             } catch (error) {
@@ -33,16 +32,17 @@ const Messages = () => {
         fetchMessages();
         
     }, []);
-  return loading ? (<Spinner />) : (
-    <>
+  return loading ? (<Spinner className='flex justify-center xl:mt-[10rem]' size='lg' color='secondary'/>) : (
+    <section className='w-full min-h-[100lvh] lg:max-w-[90rem] lg:mx-auto lg:px-9 px-4 mx-auto'>
+    <h1 className='text-2xl font-semibold text-center'>Your Messages</h1>
     {messages.length === 0 ? (
-        <h1>No messages</h1>
+        <p className='text-center'>Inbox Empty!!!</p>
     ):(
         messages.map((message) => {
             return  <MessageCard key={message._id} message={message} />
         })
     )}
-    </>
+    </section>
   )
 }
 

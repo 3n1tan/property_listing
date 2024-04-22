@@ -21,10 +21,19 @@ export const GET = async (Request: NextRequest, Response: NextResponse) => {
 
     const { userId } = sessionUser;
 
-    const messages = await Message.find({
-      recipient: userId })
+    const readMessages = await Message.find({
+      recipient: userId, read: true })
+      .sort({ createdAt: -1 })
       .populate("sender", "username")
-      .populate("listing", "name")
+      .populate("listing", "name");
+
+    const unreadMessages = await Message.find({
+      recipient: userId, read: false })
+      .sort({ createdAt: -1 })
+      .populate("sender", "username")
+      .populate("listing", "name");
+
+    const messages = [...unreadMessages, ...readMessages];
       
     return NextResponse.json(messages, { status: 200 });
   } catch (error) {

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -48,6 +48,24 @@ export default function Component() {
     };
 
     setAuthProviders();
+  }, []);
+
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const fetchUnreadMessagesCount = async () => {
+      try {
+        const response = await fetch("/api/messages/unread-count");
+        if (response.ok) {
+          const data = await response.json();
+          setCount(data);
+        }
+      } catch (error) {
+        console.error("Error fetching messages");
+      }
+    }
+    fetchUnreadMessagesCount();
+
   }, []);
 
 
@@ -154,7 +172,7 @@ export default function Component() {
                 >
                   <Badge
                     color="danger"
-                    content="9"
+                    content={count}
                     showOutline={false}
                     size="md"
                   >
@@ -203,6 +221,7 @@ export default function Component() {
                 </DropdownItem>
                 <DropdownItem key="profile" href="/profile">Your Profile</DropdownItem>
                 <DropdownItem key="saved_listing" href="/listing/saved">Saved Listing</DropdownItem>
+                <DropdownItem key="messages" href="/messages">Messages</DropdownItem>
 
                 <DropdownItem
                   key="logout"

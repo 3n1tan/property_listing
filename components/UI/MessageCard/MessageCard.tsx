@@ -1,12 +1,62 @@
-import { Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react";
-import React from "react";
+'use client';
+import { Button, Card, CardBody, CardFooter, CardHeader } from "@nextui-org/react";
+import React, {useState, useEffect} from "react";
+import { toast } from "react-toastify";
+import DeleteIcon from '@mui/icons-material/Delete';
+import MarkAsUnreadIcon from '@mui/icons-material/MarkAsUnread';
 
 const MessageCard = ({ message }: any) => {
+    const [isRead, setIsRead] = useState(message.read);
+    const [isDeleted, setIsDeleted] = useState(false);
+
+    const handleReadClick = async () => {
+        try {
+            const response = await fetch(`/api/messages/${message._id}`, {
+                method: 'PUT',
+            });
+
+            if(response.status === 200) {
+                const { read } = await response.json();
+                setIsRead(read);
+                if(read) {
+                    toast.success('Message marked as read');               
+                }
+                else {
+                    toast.success('Message marked as unread');
+                }
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error('Error marking message as read');
+        }
+    }
+
+    const handleDeleteClick = async () => { 
+        try {
+            const response = await fetch(`/api/messages/${message._id}`, {
+                method: 'DELETE',
+            });
+
+            if(response.status === 200) {
+                setIsDeleted(true);
+                toast.success('Message deleted successfully');
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error('Error deleting message');
+        }
+    }
+
+    if(isDeleted) {
+        return null;
+    }
   return (
     <>
-      <h1 className="lg:text-2xl font-semibold mb-5">Your Messages</h1>
-      <Card>
+      <Card className="lg:mt-9 max-w-[50rem] mx-auto">
         <CardHeader>
+            {!isRead && (
+                <div className="absolute top-2 right-2 bg-yellow-400 text-white px-2 py-1 rounded-md">New Message</div>
+            )}
           <h2 className="font-semibold text-lg">Property Inquiry: </h2>
           <span className="italic text-red-400 lg:ml-3 font-semibold">
             {message.listing.name}
@@ -37,13 +87,19 @@ const MessageCard = ({ message }: any) => {
 
             <li>
               <strong className="inline">Received:</strong>{" "}
-              {new Date(message.createdAt).toDateString()}
+              {new Date(message.createdAt).toUTCString()}
             </li>
           </ul>
         </CardBody>
-        <CardFooter>
-          <button>Reply</button>
-          <button>Mark as Read</button>
+        <CardFooter className="gap-9">
+            <Button className="bg-red-500 text-white rounded-md p-2" onPress={handleDeleteClick}>
+                <DeleteIcon />
+                Delete          
+            </Button>
+            <Button className={`${isRead ? 'bg-gray-300 text-black' : 'bg-blue-500 text-white'} rounded-md p-2`} onClick={handleReadClick}>
+                <MarkAsUnreadIcon />
+                {isRead ? 'Mark as New' : 'Mark as Read'}
+            </Button>
         </CardFooter>
       </Card>
     </>

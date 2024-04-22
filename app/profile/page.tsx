@@ -5,8 +5,9 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { Button, Spinner } from "@nextui-org/react";
-import {toast } from 'react-toastify';
-import Icon from "@iconify/react";
+import { toast } from "react-toastify";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import { anonymPic } from "@/public/assets";
 
 const ProfilePage = () => {
@@ -14,7 +15,6 @@ const ProfilePage = () => {
   const profileImage = session?.user?.image;
   const profileName = session?.user?.name;
   const profileEmail = session?.user?.email;
-
 
   const [userListings, setUserListings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -42,25 +42,27 @@ const ProfilePage = () => {
   }, [session]);
 
   const handleDeleteListing = async (listingId: string) => {
-    const confirmed = window.confirm("Are you sure you want to delete this listing?");
-    if(!confirmed) return;
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this listing?"
+    );
+    if (!confirmed) return;
     try {
       const res = await fetch(`/api/listing/${listingId}`, {
         method: "DELETE",
       });
       if (res.status === 200) {
-        const updatedListing = userListings.filter((listing: any) => listing._id !== listingId);
+        const updatedListing = userListings.filter(
+          (listing: any) => listing._id !== listingId
+        );
         setUserListings(updatedListing);
         toast.success("Listing deleted successfully");
-
       } else {
         toast.error("Error deleting listing");
       }
     } catch (error) {
       toast.error("Error deleting listing: " + error);
     }
-    
-  }
+  };
   return (
     <section className="w-full min-h-screen lg:max-w-[90rem] lg:mx-auto lg:px-9 mb-[2rem]">
       <div className="lg:flex grid gap-3">
@@ -72,9 +74,8 @@ const ProfilePage = () => {
             <div className="w-24 h-24 rounded-full overflow-hidden">
               <Image
                 src={
-                  profileImage 
+                  profileImage ||
                   // anonymPic
-                  ||
                   anonymPic
                 }
                 alt="profile_image"
@@ -97,7 +98,12 @@ const ProfilePage = () => {
             <p className="text-center">You have not created any listings yet</p>
           )}
           {loading ? (
-            <Spinner label="Loading" color="warning" labelColor="warning" size="lg" />
+            <Spinner
+              label="Loading"
+              color="warning"
+              labelColor="warning"
+              size="lg"
+            />
           ) : (
             <div>
               {userListings.map((listing: any) => (
@@ -113,7 +119,9 @@ const ProfilePage = () => {
                     />
                   </Link>
                   <div>
-                    <h2 className="text-lg font-semibold capitalize">{listing.name}</h2>
+                    <h2 className="text-lg font-semibold capitalize">
+                      {listing.name}
+                    </h2>
                     <p className="text-gray-600">
                       {listing.location.street} {listing.location.city}{" "}
                       {listing.location.state}
@@ -121,10 +129,18 @@ const ProfilePage = () => {
                   </div>
                   <div className="flex gap-5">
                     <Link href={`/listing/${listing._id}/edit`}>
-                      <Button className="bg-green-400">Edit</Button>
+                      <Button className="bg-green-400">
+                        <EditIcon />
+                        Edit
+                      </Button>
                     </Link>
-                    <Button className="bg-red-500 text-white" onClick={()=> handleDeleteListing(listing._id)}>
-                    Delete</Button>
+                    <Button
+                      className="bg-red-500"
+                      onClick={() => handleDeleteListing(listing._id)}
+                    >
+                      <DeleteIcon />
+                      Delete
+                    </Button>
                   </div>
                 </div>
               ))}
