@@ -41,24 +41,24 @@ const footerNavigation = {
   social: [
     {
       name: "Facebook",
-      href: "#",
+      href: "https://www.facebook.com/",
       icon: (props: SocialIconProps) => <Icon {...props} icon="fontisto:facebook" />,
     },
     {
       name: "Instagram",
-      href: "#",
+      href: "https://www.instagram.com/",
       icon: (props: SocialIconProps) => <Icon {...props} icon="fontisto:instagram" />,
     },
     {
       name: "Twitter",
-      href: "#",
+      href: "https://twitter.com/",
       icon: (props: SocialIconProps) => 
         <Icon icon="ri:twitter-x-line" />
       // <Icon {...props} icon="fontisto:twitter" />,
     },
     {
       name: "GitHub",
-      href: "#",
+      href: "https://github.com/3n1tan?tab=overview&from=2024-04-01&to=2024-04-21",
       icon: (props: SocialIconProps) => <Icon {...props} icon="fontisto:github" />,
     },
   ],

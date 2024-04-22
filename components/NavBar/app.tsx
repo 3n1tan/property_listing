@@ -32,9 +32,6 @@ import { ThemeSwitcher } from "../DarkMode/switch_theme";
 import Image from "next/image";
 import { useGlobal } from "@/context/GlobalContext";
 
-
-
-
 export default function Component() {
   const { status, data: session } = useSession();
   const profileImage = session?.user?.image;
@@ -67,11 +64,9 @@ export default function Component() {
       } catch (error) {
         console.error("Error fetching messages");
       }
-    }
+    };
     fetchUnreadMessagesCount();
-
   }, []);
-
 
   return (
     <Navbar
@@ -176,15 +171,14 @@ export default function Component() {
                 >
                   <Badge
                     color="danger"
-                    content={count}
-                    showOutline={false}
+                    content={`${count > 0 ? `${count}` : ""}`}
                     size="md"
                   >
-                    <Icon
-                      className="text-default-500"
-                      icon="solar:bell-linear"
-                      width={22}
+                    <Icon 
+                      icon="bi:envelope-at-fill" 
+                      width={26}
                     />
+  
                   </Badge>
                 </Button>
               </PopoverTrigger>
@@ -223,9 +217,15 @@ export default function Component() {
                   <p className="font-semibold">Signed in as</p>
                   <p className="font-semibold">{session?.user?.email}</p>
                 </DropdownItem>
-                <DropdownItem key="profile" href="/profile">Your Profile</DropdownItem>
-                <DropdownItem key="saved_listing" href="/listing/saved">Saved Listing</DropdownItem>
-                <DropdownItem key="messages" href="/messages">Messages</DropdownItem>
+                <DropdownItem key="profile" href="/profile">
+                  Your Profile
+                </DropdownItem>
+                <DropdownItem key="saved_listing" href="/listing/saved">
+                  Saved Listing
+                </DropdownItem>
+                <DropdownItem key="messages" href="/messages">
+                  Messages
+                </DropdownItem>
 
                 <DropdownItem
                   key="logout"
