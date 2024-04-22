@@ -23,8 +23,8 @@ export const GET = async (Request: NextRequest, Response: NextResponse) => {
 
     const messages = await Message.find({
       recipient: userId })
-      .populate("sender", "name")
-      .populate("listing", "title")
+      .populate("sender", "username")
+      .populate("listing", "name")
       
     return NextResponse.json(messages, { status: 200 });
   } catch (error) {

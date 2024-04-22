@@ -1,10 +1,17 @@
 'use client';
 import React, {useState, useEffect, use} from 'react'
 import { Spinner } from '@nextui-org/react';
+import MessageCard from '../UI/MessageCard/MessageCard';
 
+
+interface Message {
+    _id: string; 
+  }
+
+  
 const Messages = () => {
 
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState<Message[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -26,8 +33,16 @@ const Messages = () => {
         fetchMessages();
         
     }, []);
-  return (
-    <div>Messages</div>
+  return loading ? (<Spinner />) : (
+    <>
+    {messages.length === 0 ? (
+        <h1>No messages</h1>
+    ):(
+        messages.map((message) => {
+            return  <MessageCard key={message._id} message={message} />
+        })
+    )}
+    </>
   )
 }
 
