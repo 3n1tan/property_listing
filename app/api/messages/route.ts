@@ -5,6 +5,37 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
 
+
+export const GET = async (Request: NextRequest, Response: NextResponse) => {
+  try {
+    await connect();
+
+    const sessionUser = await getSessionUser();
+
+    if (!sessionUser) {
+      return NextResponse.json(
+        { message: "You are not logged in" },
+        { status: 401 }
+      );
+    }
+
+    const { userId } = sessionUser;
+
+    const messages = await Message.find({
+      recipient: userId })
+      .populate("sender", "name")
+      .populate("listing", "title")
+      
+    return NextResponse.json(messages, { status: 200 });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json(
+      { message: "Error fetching messages, please try again later" },
+      { status: 500 }
+    );
+  }
+
+}
 type FormValues = {
   name: string;
   email: string;
@@ -45,7 +76,7 @@ export const POST = async (Request: NextRequest, Response: NextResponse) => {
       sender: userId,
     });
 
-    console.log(newMessage);
+    // console.log(newMessage);
 
     await newMessage.save();
 
