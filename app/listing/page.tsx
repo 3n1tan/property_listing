@@ -53,7 +53,7 @@ const ListingsPage = async ({
   searchParams: {[key: string]: string | string[] | undefined};
 }) => {
   const page = searchParams["page"] ?? '1'
-  const per_page = searchParams["per_page"] ?? '3'
+  const per_page = searchParams["per_page"] ?? '6'
 
   const start = (Number(page) - 1 ) * Number(per_page)
   const end = start + Number(per_page)
@@ -69,7 +69,7 @@ const ListingsPage = async ({
     <div className="w-full min-h-[100lvh] lg:max-w-[90rem] lg:mx-auto lg:px-9 px-4 ml-[-10px]">
       <div
         className={cn(
-          "mx-auto grid max-w-[110rem] grid-cols-1 gap-9  p-4 lg:grid-cols-2 xl:grid-cols-3 lg:mt-9"
+          "mx-auto grid max-w-[110rem] grid-cols-1 gap-9 pl-2 lg:grid-cols-2 xl:grid-cols-3 lg:mt-9 "
         )}
       >
         {paginatedListings.map((listing: any) => (

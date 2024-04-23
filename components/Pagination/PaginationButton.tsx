@@ -19,9 +19,9 @@ const PaginationButton: FC<PaginationButtonProps> = (
     const searchParams = useSearchParams();
 
     const page = searchParams.get('page') ?? '1';
-    const per_page = searchParams.get('per_page') ?? '3';
+    const per_page = searchParams.get('per_page') ?? '6';
   return (
-    <div className='flex gap-6 self-center justify-center xl:mt-9'>
+    <div className='flex gap-6 self-center justify-center lg:mt-[5rem] mt-[4rem]'>
       {hasPreviousPage ? (
         <Link
           href={`/listing?page=${Number(page) - 1}&per_page=${per_page}`}
@@ -30,7 +30,6 @@ const PaginationButton: FC<PaginationButtonProps> = (
             <Button className='bg-blue-500 text-white'>
                 Prev Page
             </Button>
-          {/* <p className='bg-blue-500 text-white'>Prev page</p> */}
         </Link>
       ) : (
         <Button className='bg-gray-300 text-gray-600' disabled>
@@ -50,7 +49,6 @@ const PaginationButton: FC<PaginationButtonProps> = (
             <Button className='bg-blue-500 text-white'>
                 Next Page
             </Button>
-          {/* <p className='bg-blue-500 text-white'>Next page</p> */}
         </Link>
       ) : (
         <Button className='bg-gray-300 text-gray-600' disabled>

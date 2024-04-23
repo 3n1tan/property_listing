@@ -129,13 +129,13 @@ const ProfilePage = () => {
                   </div>
                   <div className="flex gap-5">
                     <Link href={`/listing/${listing._id}/edit`}>
-                      <Button className="bg-green-400">
+                      <Button className="bg-green-400 text-white">
                         <EditIcon />
                         Edit
                       </Button>
                     </Link>
                     <Button
-                      className="bg-red-500"
+                      className="bg-red-500 text-white"
                       onClick={() => handleDeleteListing(listing._id)}
                     >
                       <DeleteIcon />

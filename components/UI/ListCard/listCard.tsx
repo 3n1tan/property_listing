@@ -68,7 +68,7 @@ const ListCard: React.FC<ListCardProps> = ({ listing }) => {
 
   
   return (
-    <Card className="rounded-xl shadow-md relative w-[24rem]">
+    <Card className="rounded-xl shadow-md relative w-[24rem] mx-auto">
       <div className="relative w-[25rem] h-[12rem] overflow-hidden rounded-t-xl">
         <Image
           isBlurred
