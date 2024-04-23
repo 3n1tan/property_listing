@@ -224,9 +224,6 @@ export default function Component() {
                 <DropdownItem key="saved_listing" href="/listing/saved">
                   Saved Listing
                 </DropdownItem>
-                <DropdownItem key="messages" href="/messages">
-                  Messages
-                </DropdownItem>
 
                 <DropdownItem
                   key="logout"
