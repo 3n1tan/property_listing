@@ -5,7 +5,7 @@ import { Icon } from "@iconify/react";
 import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 
-const FavIcon = async ({ listing }: any) => {
+const FavIcon =  ({ listing }: any) => {
   const [isLiked, setIsLiked] = useState(false);
   const { data: session } = useSession();
   const userId = session?.user?.id;

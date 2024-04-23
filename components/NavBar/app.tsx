@@ -31,6 +31,7 @@ import NotificationsCard from "./notifications-card";
 import { ThemeSwitcher } from "../DarkMode/switch_theme";
 import Image from "next/image";
 import { useGlobal } from "@/context/GlobalContext";
+import { set } from "mongoose";
 
 export default function Component() {
   const { status, data: session } = useSession();
@@ -66,7 +67,7 @@ export default function Component() {
       }
     };
     fetchUnreadMessagesCount();
-  }, []);
+  }, [setCount]);
 
   return (
     <Navbar

@@ -90,8 +90,6 @@ const EditListForm = () => {
     const fetchListData = async () => {
       try {
         const response = await axios.get(
-          // `http://localhost:3000/api/listing/${id}`
-          // `http://localhost:3000/api/listing/${id}`
           `${process.env.NEXT_PUBLIC_DOMAIN}/api/listing/${id}`
         );
         const data = response.data;
@@ -132,7 +130,7 @@ const EditListForm = () => {
     };
 
     fetchListData();
-  }, []);
+  }, [id]);
 
   const cancelOperation = () => {
     router.push(`/profile`);

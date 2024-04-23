@@ -18,6 +18,7 @@ import {Icon} from "@iconify/react";
 
 import NotificationItem from "./notification-item";
 import {useGlobal} from "../../context/GlobalContext";
+import { set } from "mongoose";
 
 type Notification = {
   id: string;
@@ -140,7 +141,7 @@ export default function Component(props: CardProps) {
     }
     fetchUnreadMessagesCount();
 
-  }, []);
+  }, [setCount]);
 
   return (
     <Card className="w-full max-w-[420px]" {...props}>
