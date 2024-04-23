@@ -363,6 +363,7 @@ const NewListForm = () => {
               {...register("images")}
               multiple
               accept="image/*"
+              required
             />
           </div>
 

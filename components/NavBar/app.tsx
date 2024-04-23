@@ -72,21 +72,21 @@ export default function Component() {
   return (
     <Navbar
       classNames={{
-        base: "lg:bg-transparent lg:backdrop-filter-none",
+        base: "lg:bg-gray-200 lg:backdrop-filter-none",
         item: "data-[active=true]:text-primary",
         wrapper: "px-4 sm:px-6 lg:max-w-[90rem]  py-[3rem] ",
       }}
       height="60px"
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
-      position="static"
+      position="sticky"
     >
       <NavbarBrand className="max-w-fit lg:mr-9">
         <NavbarMenuToggle className="mr-2 h-6 lg:hidden" />
         <div className="flex items-center lg:ml-0 ml-[3rem]">
           <Link href="/">
-            <AcmeIcon />
-            <p className="font-bold text-inherit text-xl">3N1T | PROPERTIES </p>
+            <AcmeIcon  className="dark:text-green-600"/>
+            <p className="font-bold text-inherit text-xl dark:text-green-600">3N1T | PROPERTIES </p>
           </Link>
         </div>
       </NavbarBrand>
