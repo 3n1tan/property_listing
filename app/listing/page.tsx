@@ -1,6 +1,7 @@
 import React from "react";
 import { cn } from "./cn";
 import ListCard from "@/components/UI/ListCard/listCard";
+import PaginationButton from "@/components/Pagination/PaginationButton";
 
 interface Listing {
   _id: string;
@@ -46,8 +47,18 @@ async function fetchListings() {
   }
   return res.json();
 }
-const ListingsPage = async () => {
+const ListingsPage = async ({
+  searchParams,
+} : {
+  searchParams: {[key: string]: string | string[] | undefined};
+}) => {
+  const page = searchParams["page"] ?? '1'
+  const per_page = searchParams["per_page"] ?? '3'
+
+  const start = (Number(page) - 1 ) * Number(per_page)
+  const end = start + Number(per_page)
   const listings = await fetchListings();
+  const paginatedListings = listings.slice(start, end)
 
   listings.sort(
     (a: Listing, b: Listing) =>
@@ -58,13 +69,20 @@ const ListingsPage = async () => {
     <div className="w-full min-h-[100lvh] lg:max-w-[90rem] lg:mx-auto lg:px-9 px-4 ml-[-10px]">
       <div
         className={cn(
-          "mx-auto grid max-w-7xl grid-cols-1 gap-9  p-4 lg:grid-cols-2 xl:grid-cols-3 lg:mt-9"
+          "mx-auto grid max-w-[110rem] grid-cols-1 gap-9  p-4 lg:grid-cols-2 xl:grid-cols-3 lg:mt-9"
         )}
       >
-        {listings.map((listing: any) => (
+        {paginatedListings.map((listing: any) => (
           <ListCard key={listing._id} listing={listing} />
         ))}
       </div>  
+
+      <PaginationButton
+        hasNextPage={end < listings.length}
+        hasPreviousPage={start > 0}
+        listingCount={listings.length}
+       
+      />
     </div>
   );
 };
