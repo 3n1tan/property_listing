@@ -47,6 +47,8 @@ Live page [here](https://listing-rentals.vercel.app)
 - Run "npm run dev", to launch in developement mode.
 
 ## Screenshot
+![Alt text](<public/assets/Screenshot 2024-04-24 at 14.47.02.png>)
+![Alt text](<public/assets/Screenshot 2024-04-24 at 14.47.52.png>)
 
 
 ## Author
