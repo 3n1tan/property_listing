@@ -1,4 +1,5 @@
-import pin from "./pin.png"
-import anonymPic from "./anonymPic.png"
+import pin from "./pin.png";
+import anonymPic from "./anonymPic.png";
+import cabin from "./cabin.jpg";
 
-export { pin, anonymPic}
+export { pin, anonymPic, cabin };

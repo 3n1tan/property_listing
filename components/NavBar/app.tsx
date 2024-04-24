@@ -72,7 +72,7 @@ export default function Component() {
   return (
     <Navbar
       classNames={{
-        base: "lg:bg-gray-200 lg:backdrop-filter-none",
+        base: "bg-[#217b7e]",
         item: "data-[active=true]:text-primary",
         wrapper: "px-4 sm:px-6 lg:max-w-[90rem]  py-[3rem] ",
       }}
@@ -85,8 +85,8 @@ export default function Component() {
         <NavbarMenuToggle className="mr-2 h-6 lg:hidden" />
         <div className="flex items-center lg:ml-0 ml-[3rem]">
           <Link href="/">
-            <AcmeIcon  className="dark:text-green-600"/>
-            <p className="font-bold text-inherit text-xl dark:text-green-600">3N1T | PROPERTIES </p>
+            <AcmeIcon  className="text-white"/>
+            <p className="font-bold text-xl text-white">3N1T | PROPERTIES </p>
           </Link>
         </div>
       </NavbarBrand>

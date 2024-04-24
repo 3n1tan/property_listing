@@ -97,7 +97,7 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
           </div>
           <div className="flex items-center justify-center">
             <div className="">
-              {singleList.rates.weekly && (
+              {singleList.rates.weekly ? (
                 <div className="flex items-center gap-3">
                   <p className="text-default-500 text-sm lg:text-[1rem]">
                     Weekly
@@ -106,12 +106,14 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
                     {singleList.rates.weekly.toLocaleString()} €/wk
                   </p>
                 </div>
+              ) :(
+                <ClearIcon className="text-red-600 text-3xl" />
               )}
             </div>
           </div>
           <div className="flex items-center justify-center">
             <div className="">
-              {singleList.rates.monthly && (
+              {singleList.rates.monthly ? (
                 <div className="flex items-center gap-3">
                   <p className="text-default-500 text-sm lg:text-[1rem]">
                     Monthly
@@ -120,6 +122,8 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
                     {singleList.rates.monthly.toLocaleString()} €/mo
                   </p>
                 </div>
+              ) : (
+                <ClearIcon className="text-red-600 text-3xl" />
               )}
             </div>
           </div>

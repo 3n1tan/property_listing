@@ -66,10 +66,11 @@ const ListingsPage = async ({
   );
 
   return (
-    <div className="w-full min-h-[100lvh] lg:max-w-[90rem] lg:mx-auto lg:px-9 px-4 ml-[-10px]">
+    <div className="w-full min-h-[100lvh] lg:max-w-[90rem] py-9 lg:mx-auto lg:px-9 px-4 ml-[-10px]">
+      <h1 className="lg:text-3xl text-xl text-center font-semibold">Our Listings</h1>
       <div
         className={cn(
-          "mx-auto grid max-w-[110rem] grid-cols-1 gap-9 pl-2 lg:grid-cols-2 xl:grid-cols-3 lg:mt-9 "
+          "mx-auto grid max-w-[110rem] grid-cols-1 gap-9 pl-2 lg:grid-cols-2 xl:grid-cols-3 mt-9 "
         )}
       >
         {paginatedListings.map((listing: any) => (

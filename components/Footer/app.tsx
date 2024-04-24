@@ -40,14 +40,14 @@ const footerNavigation = {
   ],
   social: [
     {
-      name: "Facebook",
-      href: "https://www.facebook.com/",
-      icon: (props: SocialIconProps) => <Icon {...props} icon="fontisto:facebook" />,
+      name: "HomePage",
+      href: "https://www.enitanodupitan.com/",
+      icon: (props: SocialIconProps) => <Icon {...props} icon="fontisto:home" />,
     },
     {
-      name: "Instagram",
-      href: "https://www.instagram.com/",
-      icon: (props: SocialIconProps) => <Icon {...props} icon="fontisto:instagram" />,
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/enitan-odupitan-39bbaa115/",
+      icon: (props: SocialIconProps) => <Icon {...props} icon="fontisto:linkedin" />,
     },
     {
       name: "Twitter",
