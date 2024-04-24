@@ -98,8 +98,8 @@ export default function Component() {
           <Link
             className={`${
               "/" === path
-                ? "flex text-inherit text-[#0000FF] dark:text-[#FFFF00] tracking-widest"
-                : "flex text-inherit tracking-widest"
+                ? "flex text-inherit text-[#0000FF] dark:text-[#FFFF00] tracking-widest font-semibold"
+                : "flex text-inherit tracking-widest font-semibold"
             }`}
             href="/"
           >
@@ -110,8 +110,8 @@ export default function Component() {
           <Link
             className={`${
               "/listing" === path
-                ? "flex text-inherit text-[#0000FF] dark:text-[#FFFF00] tracking-widest"
-                : "flex text-inherit tracking-widest"
+                ? "flex text-inherit text-[#0000FF] dark:text-[#FFFF00] tracking-widest font-semibold"
+                : "flex text-inherit tracking-widest font-semibold"
             }`}
             href="/listing"
           >
@@ -123,8 +123,8 @@ export default function Component() {
             <Link
               className={`${
                 "/listing/create" === path
-                  ? "flex text-inherit text-[#0000FF] dark:text-[#FFFF00] tracking-widest"
-                  : "flex text-inherit tracking-widest"
+                  ? "flex text-inherit text-[#0000FF] dark:text-[#FFFF00] tracking-widest font-semibold"
+                  : "flex text-inherit tracking-widest font-semibold"
               }`}
               href="/listing/create"
             >

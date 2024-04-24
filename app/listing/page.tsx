@@ -47,6 +47,7 @@ async function fetchListings() {
   }
   return res.json();
 }
+
 const ListingsPage = async ({
   searchParams,
 } : {
@@ -60,9 +61,17 @@ const ListingsPage = async ({
   const listings = await fetchListings();
   const paginatedListings = listings.slice(start, end)
 
-  listings.sort(
-    (a: Listing, b: Listing) =>
-      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  // paginatedListings.sort(
+  //   (a: Listing, b: Listing) =>
+  //     new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  // );
+
+  paginatedListings.sort(
+    (a: Listing, b: Listing) => {
+      let dateA = new Date(a.createdAt);
+      let dateB = new Date(b.createdAt);
+      return dateA < dateB ? 1 : -1;
+    },
   );
 
   return (
