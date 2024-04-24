@@ -360,11 +360,13 @@ const NewListForm = () => {
           <div>
             <input
               type="file"
-              {...register("images")}
+              // {...register("images")}
+              {...register("images", { validate: (files: File[]) => files.length <= 4 })}
               multiple
               accept="image/*"
-              required
+              required            
             />
+            <span className="text-red-400 font-semibold">*Max 4 images*</span>
           </div>
 
           <div className="pt-9 max-w-full flex">
