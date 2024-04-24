@@ -61,7 +61,7 @@ const MessageCard = ({ message }: any) => {
     }
   return (
     <>
-      <Card className="lg:mt-9 lg:max-w-[50rem] max-w-fit mx-auto">
+      <Card className="mt-9 lg:max-w-[50rem] max-w-fit mx-auto">
         <CardHeader>
             {!isRead && (
                 <div className="absolute top-2 right-2 bg-yellow-400 text-white px-2 py-1 rounded-md">New Message</div>

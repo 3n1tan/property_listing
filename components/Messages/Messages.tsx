@@ -34,7 +34,7 @@ const Messages = () => {
     }, []);
   return loading ? (<Spinner className='flex justify-center xl:mt-[10rem]' size='lg' color='secondary'/>) : (
     <section className='w-full min-h-[100lvh] lg:max-w-[90rem] lg:mx-auto lg:px-9 px-4 mx-auto'>
-    <h1 className='text-2xl font-semibold text-center'>Your Messages</h1>
+    <h1 className='text-2xl font-semibold text-center my-9'>Your Messages</h1>
     {messages.length === 0 ? (
         <p className='text-center'>Inbox Empty!!!</p>
     ):(
