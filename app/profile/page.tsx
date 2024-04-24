@@ -129,7 +129,7 @@ const ProfilePage = () => {
                   </div>
                   <div className="flex gap-5">
                     <Link href={`/listing/${listing._id}/edit`}>
-                      <Button className="bg-green-400 text-white">
+                      <Button className="bg-green-400">
                         <EditIcon />
                         Edit
                       </Button>
