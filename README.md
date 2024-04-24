@@ -26,11 +26,13 @@ Key Features:
 
 Built with:
 
-- Front-End: NextJS(+Backend), Typescript, React-Hook-Form (npm run dev)
+- Front-End: NextJS Framework, Typescript, React-Hook-Form, ReactContext
+- Back-End: NextJS
 - Authentication: NextAuth
-- Database: MongoDB,
+- Database: MongoDB, Mongoose Schema
 - Image Upload: Cloudinary
-- UI Library/Styling: NextUI, Tailwind, React-Toastify, Mapbox, Material UI,
+- UI Library/Styling: NextUI, Tailwind, React-Toastify, React-Iconify, Material UI
+- Map Display: Mapbox
 - Animation: Photoswipe
 
 ## Required Dependencies
