@@ -70,6 +70,7 @@ const ListCard: React.FC<ListCardProps> = ({ listing }) => {
   return (
     <Card className="rounded-xl shadow-md relative w-[24rem] mx-auto">
       <div className="relative w-[25rem] h-[12rem] overflow-hidden rounded-t-xl">
+        <Link href={`/listing/${listing._id}`}>
         <Image
           isBlurred
           isZoomed
@@ -80,6 +81,7 @@ const ListCard: React.FC<ListCardProps> = ({ listing }) => {
           // className="rounded-t-xl object-fit w-full -z-1"
           className=" w-full hover:scale-110 object-fit"
         />
+        </Link>
       </div>
 
       <h3 className="absolute right-3 top-3 z-20 bg-white px-4 py-2 rounded-lg text-green-700 font-bold text-right md:text-center lg:text-right">
@@ -149,7 +151,7 @@ const ListCard: React.FC<ListCardProps> = ({ listing }) => {
             </span>
           </p>
           <Button className="bg-blue-400 text-white">
-            <Link href={`/listing/${listing._id}`}>Details</Link>
+            <Link href={`/listing/${listing._id}`}>More Details</Link>
           </Button>
         </div>
       </CardFooter>

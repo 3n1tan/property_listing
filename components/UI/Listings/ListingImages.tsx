@@ -59,7 +59,7 @@ const ListingImages: React.FC<ListingImagesProps> = ({ images }) => {
                         width={800}
                         height={500}
                         layout="responsive"
-                        className="object-cover h-[500px] mx-auto rounded-xl"
+                        className="object-cover h-[500px] mx-auto rounded-xl hover:cursor-pointer"
                         // removeWrapper={false}
                         priority={true}
                       />
