@@ -141,7 +141,7 @@ export default function Component() {
           {providers &&
             Object.values(providers).map((provider, index) => (
               <Button
-                className=""
+                className="font-semibold text-md tracking-widest bg-gray-700 w-fit px-[1rem] text-white"
                 href="#"
                 key={index}
                 onClick={() => signIn(provider.id)}
