@@ -6,6 +6,7 @@ import { Providers } from "./providers";
 import NavBar from "@/components/NavBar/app";
 import Footer from "@/components/Footer/app";
 import AuthProvider from "@/components/Auth/AuthProvider";
+import { Analytics } from "@vercel/analytics/react"
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GlobalProvider } from "@/context/GlobalContext";
@@ -37,10 +38,15 @@ export default function RootLayout({
             <Providers
               themeProps={{ attribute: "class", defaultTheme: "light" }}
             >
-              <NavBar />
+              <nav>
+                <NavBar />
+              </nav>
               {children}
-              <Footer />
+              <Analytics />
               <ToastContainer />
+              <footer>
+                <Footer />
+              </footer>
             </Providers>
           </body>
         </html>
