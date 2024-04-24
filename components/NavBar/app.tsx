@@ -147,7 +147,7 @@ export default function Component() {
                 onClick={() => signIn(provider.id)}
               >
                 <GoogleIcon />
-                Login / Register
+                Login
               </Button>
             ))}
         </NavbarContent>
@@ -295,7 +295,7 @@ export default function Component() {
                   onClick={() => signIn(provider.id)}
                 >
                   <GoogleIcon />
-                  Login / Register
+                  Login
                 </Button>
               ))}
           </NavbarMenuItem>
