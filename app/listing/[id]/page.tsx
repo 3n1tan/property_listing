@@ -27,10 +27,8 @@ interface SingleListProps {
 
 async function fetchListing(params: { id: string }) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_DOMAIN}/listing/${params.id}`,
-    {
-      cache: "no-store",
-    }
+    `${process.env.NEXT_PUBLIC_API_DOMAIN}/listing/${params.id}`, { cache: "no-store"}
+    
   );
 
   if (!res.ok) {
@@ -54,9 +52,9 @@ const SingleListPage: FC<SingleListProps> = async ({ params }) => {
             <span className="lg:text-2xl">Back to Listing</span>
           </Link>
         </div>
-        <div className="mt-6">
+        {/* <div className="mt-6">
           <SocialShareIcon listing={singleList} />
-        </div>
+        </div> */}
       </div>
 
       <Card className="mt-9 bg-[#FBFFF4]">

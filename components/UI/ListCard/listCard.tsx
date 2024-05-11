@@ -75,18 +75,19 @@ const ListCard: React.FC<ListCardProps> = ({ listing }) => {
           isBlurred
           isZoomed
           src={listing.images[0]}
-          alt=""
+          alt="main picture of the listing"
           width={600}
           height={1}
           // className="rounded-t-xl object-fit w-full -z-1"
           className=" w-full hover:scale-110 object-fit"
+          loading="lazy"
         />
         </Link>
       </div>
 
-      <h3 className="absolute right-3 top-3 z-20 bg-white px-4 py-2 rounded-lg text-green-700 font-bold text-right md:text-center lg:text-right">
+      <h1 className="absolute right-3 top-3 z-20 bg-white px-4 py-2 rounded-lg text-green-700 font-bold text-right md:text-center lg:text-right">
         {getRate(listing)}
-      </h3>
+      </h1>
       {/* <h3 className="absolute right-3 top-3 z-20 bg-background/60 backdrop-blur-md backdrop-saturate-150 dark:bg-default-100/50">
         {getRate(listing)}
       </h3> */}
@@ -97,9 +98,9 @@ const ListCard: React.FC<ListCardProps> = ({ listing }) => {
         <div className="font-medium text-small text-default-400 capitalize">
           {listing.type}
         </div>
-        <h3 className="text-xl tracking-tighter font-semibold mt-2 capitalize">
+        <h2 className="text-xl tracking-tighter font-semibold mt-2 capitalize">
           {listing.name}
-        </h3>
+        </h2>
         <div className="flex justify-center mt-7 gap-5">
           <p>
             <BedOutlinedIcon className="text-default-400 mr-2" />

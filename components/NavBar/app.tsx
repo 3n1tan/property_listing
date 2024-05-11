@@ -138,6 +138,7 @@ export default function Component() {
           className="hidden lg:flex max-w-fit items-center gap-0 rounded-full p-0 lg:bg-content2 lg:dark:bg-content1 xl:ml-[10rem]"
           justify="center"
         >
+          <NavbarItem>
           {providers &&
             Object.values(providers).map((provider, index) => (
               <Button
@@ -150,6 +151,7 @@ export default function Component() {
                 Login
               </Button>
             ))}
+          </NavbarItem>
         </NavbarContent>
       )}
       {session && (
@@ -207,7 +209,7 @@ export default function Component() {
                       }
                       width={30}
                       height={30}
-                      alt=""
+                      alt="profile image"
                       className="rounded-full"
                     />
                   </Badge>

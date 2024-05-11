@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <GlobalProvider>
       <AuthProvider>
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
           <body
             className={clsx(
               "min-h-[100lvh] bg-background font-mono antialiased",

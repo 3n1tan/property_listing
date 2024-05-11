@@ -68,7 +68,6 @@ export const POST = async (Request: NextRequest, Response: NextResponse) => {
     }
 
     const { userId } = sessionUser;
-    console.log(userId);
 
     const body = await Request.json();
     const messageData: FormValues = body;
@@ -84,8 +83,6 @@ export const POST = async (Request: NextRequest, Response: NextResponse) => {
       ...messageData,
       sender: userId,
     });
-
-    // console.log(newMessage);
 
     await newMessage.save();
 

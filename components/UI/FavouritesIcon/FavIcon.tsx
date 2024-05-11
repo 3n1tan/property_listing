@@ -5,7 +5,7 @@ import { Icon } from "@iconify/react";
 import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 
-const FavIcon =  ({ listing }: any) => {
+const FavIcon = ({ listing }: any) => {
   const [isLiked, setIsLiked] = useState(false);
   const { data: session } = useSession();
   const userId = session?.user?.id;
@@ -53,6 +53,7 @@ const FavIcon =  ({ listing }: any) => {
   };
   return isLiked ? (
     <Button
+      aria-label="Remove from favourites"
       isIconOnly
       className="absolute left-3 top-3 z-20 bg-background/60 backdrop-blur-md backdrop-saturate-150 dark:bg-default-100/50"
       radius="full"
@@ -64,6 +65,7 @@ const FavIcon =  ({ listing }: any) => {
     </Button>
   ) : (
     <Button
+      aria-label="Add to favourites"
       isIconOnly
       className="absolute left-3 top-3 z-20 bg-background/60 backdrop-blur-md backdrop-saturate-150 dark:bg-default-100/50"
       radius="full"

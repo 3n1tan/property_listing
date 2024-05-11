@@ -107,10 +107,7 @@ export async function POST(Request: NextRequest, Response: NextResponse) {
       }
     }
 
-    // console.log(listingData);
-
     const newListing = new Listing(listingData);
-    // console.log(newListing);
     await newListing.save();
 
     return new NextResponse("Listing created", { status: 201 });

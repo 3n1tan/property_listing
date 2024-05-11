@@ -18,9 +18,8 @@ export function ThemeSwitcher() {
 
   return (
     <div>
-      {/* <button onClick={() => setTheme('light')}>Light Mode</button>
-      <button onClick={() => setTheme('dark')}>Dark Mode</button> */}
         <Button 
+            aria-label="Toggle theme"
             isIconOnly 
             radius="full" 
             variant="light"

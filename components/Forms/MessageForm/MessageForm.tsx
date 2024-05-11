@@ -38,7 +38,7 @@ const MessageForm = ({ listing }: any) => {
   const onSubmit = async (data: FormValues) => {
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_DOMAIN}/api/messages`,
+        `${process.env.NEXT_PUBLIC_DOMAIN}/api/messages`, 
         {
           method: "POST",
           headers: {

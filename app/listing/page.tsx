@@ -34,13 +34,10 @@ interface Listing {
   updatedAt: string;
 }
 
-interface ListCardProps {
-  listing: Listing;
-}
 
 async function fetchListings() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}/listing`, {
-    cache: "no-store",
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}/listing`, { cache: "no-store"
+    
   });
   if (!res.ok) {
     throw new Error("Fetching Listings failed");
@@ -60,11 +57,6 @@ const ListingsPage = async ({
   const end = start + Number(per_page)
   const listings = await fetchListings();
   const paginatedListings = listings.slice(start, end)
-
-  // paginatedListings.sort(
-  //   (a: Listing, b: Listing) =>
-  //     new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-  // );
 
   paginatedListings.sort(
     (a: Listing, b: Listing) => {

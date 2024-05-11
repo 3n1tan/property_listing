@@ -27,7 +27,6 @@ export const GET = async (Request: NextRequest, Response: NextResponse) => {
     });
 
     const count = unreadMessages.length;
-    // console.log(count);
 
     return NextResponse.json(count, { status: 200 });
   } catch (error) {
